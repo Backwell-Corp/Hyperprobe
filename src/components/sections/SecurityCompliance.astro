@@ -1,0 +1,59 @@
+---
+// src/components/sections/SecurityCompliance.astro
+---
+
+<section id="security-compliance" class="relative z-10 bg-zinc-50/60 border-t border-zinc-100">
+  <div class="max-w-[1380px] mx-auto px-6 py-16 md:px-16 md:py-[100px]">
+    
+    <!-- Section Heading -->
+    <div class="text-left max-w-5xl mb-16">
+      <span class="eyebrow block mb-3">— SECURITY & COMPLIANCE</span>
+      <h2 class="section-heading mb-4">
+        Your three hard requirements.<br class="hidden sm:inline" />
+        <span class="accent">Met.</span>
+      </h2>
+      <p class="body-text">
+        Production debugging requires absolute data compliance. Hyperprobe redacts sensitive information locally, meaning database-level and token-level PII never leaves your networks.
+      </p>
+    </div>
+
+    <!-- 3 Compliance Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+      
+      <!-- Card 1 -->
+      <div class="rounded-none border border-zinc-200 bg-white p-6 shadow-sm flex flex-col justify-between min-h-[240px]">
+        <div>
+          <span class="text-3xl font-black text-brand-primary block mb-3 font-sans select-none">1</span>
+          <h3 class="text-base font-bold text-zinc-900 mb-2 font-sans">Read-only architecture</h3>
+          <p class="text-zinc-500 text-xs sm:text-sm font-light leading-relaxed">
+            The agent cannot mutate application state, cannot crash your pod, cannot affect customer requests. Probes capture variable values from running memory. They never write. Zero blast radius by design.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="rounded-none border border-zinc-200 bg-white p-6 shadow-sm flex flex-col justify-between min-h-[240px]">
+        <div>
+          <span class="text-3xl font-black text-brand-primary block mb-3 font-sans select-none">2</span>
+          <h3 class="text-base font-bold text-zinc-900 mb-2 font-sans">PII redaction in-memory</h3>
+          <p class="text-zinc-500 text-xs sm:text-sm font-light leading-relaxed">
+            Sensitive data is masked at the agent, in your infrastructure, before any snapshot is captured. PII never leaves your network. You configure the redaction rules; we never see the raw values.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="rounded-none border border-zinc-200 bg-white p-6 shadow-sm flex flex-col justify-between min-h-[240px]">
+        <div>
+          <span class="text-3xl font-black text-brand-primary block mb-3 font-sans select-none">3</span>
+          <h3 class="text-base font-bold text-zinc-900 mb-2 font-sans">Zero AI training on your code</h3>
+          <p class="text-zinc-500 text-xs sm:text-sm font-light leading-relaxed">
+            Your snapshots, your code paths, your runtime data are never used to train foundation models. Not by HyperProbe. Not by upstream providers. Your IP stays your IP.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>

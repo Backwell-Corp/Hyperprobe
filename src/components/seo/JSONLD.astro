@@ -1,0 +1,94 @@
+---
+// src/components/seo/JSONLD.astro
+
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface BreadcrumbItem {
+  name: string;
+  item: string;
+}
+
+interface Props {
+  types: ('Organization' | 'SoftwareApplication' | 'FAQ' | 'Breadcrumb')[];
+  faqItems?: FAQItem[];
+  breadcrumbItems?: BreadcrumbItem[];
+}
+
+const { types, faqItems = [], breadcrumbItems = [] } = Astro.props;
+
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://hyperprobe.io';
+
+const schemas: any[] = [];
+
+if (types.includes('Organization')) {
+  schemas.push({
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': `${siteUrl}/#organization`,
+    'name': 'Hyperprobe',
+    'url': siteUrl,
+    'logo': {
+      '@type': 'ImageObject',
+      '@id': `${siteUrl}/#logo`,
+      'url': `${siteUrl}/favicon.svg`,
+      'caption': 'Hyperprobe Logo'
+    },
+    'sameAs': [
+      'https://github.com/hyperprobe',
+      'https://x.com/hyperprobe'
+    ]
+  });
+}
+
+if (types.includes('SoftwareApplication')) {
+  schemas.push({
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    'name': 'Hyperprobe',
+    'operatingSystem': 'Linux, macOS, Windows',
+    'applicationCategory': 'DeveloperApplication, DebuggingTool',
+    'description': 'Production debugging and real-time distributed tracing for backend applications. Built for engineering teams to diagnose incidents with zero overhead.',
+    'offers': {
+      '@type': 'Offer',
+      'price': '0',
+      'priceCurrency': 'USD',
+      'description': 'Free developer tier and premium agency packages'
+    }
+  });
+}
+
+if (types.includes('FAQ') && faqItems.length > 0) {
+  schemas.push({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    'mainEntity': faqItems.map((item) => ({
+      '@type': 'Question',
+      'name': item.question,
+      'acceptedAnswer': {
+        '@type': 'Answer',
+        'text': item.answer
+      }
+    }))
+  });
+}
+
+if (types.includes('Breadcrumb') && breadcrumbItems.length > 0) {
+  schemas.push({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    'itemListElement': breadcrumbItems.map((item, index) => ({
+      '@type': 'ListItem',
+      'position': index + 1,
+      'name': item.name,
+      'item': item.item.startsWith('http') ? item.item : `${siteUrl}${item.item}`
+    }))
+  });
+}
+---
+
+{schemas.map((schema) => (
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+))}

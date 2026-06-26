@@ -1,0 +1,123 @@
+---
+// src/components/sections/WhyHyperprobe.astro
+---
+
+<section id="why-hyperprobe" class="relative z-10 bg-zinc-50/60 border-t border-zinc-100">
+  <div class="max-w-[1380px] mx-auto px-6 py-16 md:px-16 md:py-[100px]">
+    
+    <!-- Section Heading (Matches screenshot) -->
+    <div class="text-left max-w-5xl mb-16">
+      <span class="eyebrow block mb-3">— THE NUMBERS</span>
+      <h2 class="section-heading mb-4">
+        Same incident. Same engineer. Same logs.<br class="hidden sm:inline" />
+        <span class="accent">One probe changes everything.</span>
+      </h2>
+      <p class="body-text">
+        Why waste days adding log statements, rebuilding containers, and redeploying microservices just to capture a single undefined variable?
+      </p>
+    </div>
+
+    <!-- Comparative Table Section (Exact screenshot replica) -->
+    <div class="max-w-5xl mx-auto rounded-[20px] border border-zinc-200 bg-white shadow-md overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full font-sans text-xs sm:text-sm border-collapse min-w-[850px]">
+          <thead>
+            <tr class="divide-x divide-zinc-200">
+              <th class="py-3.5 px-5 font-bold text-center text-zinc-700 bg-white border-b border-zinc-200 w-[30%]">
+                What the engineer needs
+              </th>
+              <th class="py-3.5 px-5 font-bold text-center text-white bg-black border-b border-zinc-200 w-[35%]">
+                LOGS + APM
+              </th>
+              <th class="py-3.5 px-5 font-bold text-center text-white bg-[#C0392B] border-b border-zinc-200 w-[35%]">
+                With HyperProbe
+              </th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-zinc-200 text-zinc-700">
+            
+            <!-- Row 1 -->
+            <tr class="divide-x divide-zinc-200">
+              <td class="py-3.5 px-5 text-center font-bold text-zinc-900 bg-white">
+                Where did it break?
+              </td>
+              <td class="py-3.5 px-5 text-center text-red-600 bg-white font-medium">
+                5 min
+              </td>
+              <td class="py-3.5 px-5 text-center text-emerald-800 bg-[#E8F8F0]/30 font-medium">
+                5 min
+              </td>
+            </tr>
+
+            <!-- Row 2 -->
+            <tr class="divide-x divide-zinc-200">
+              <td class="py-3.5 px-5 text-center font-bold text-zinc-900 bg-white">
+                Which users are affected?
+              </td>
+              <td class="py-3.5 px-5 text-center text-red-600 bg-white font-medium">
+                25 min — tier not in logs, needs separate DB query
+              </td>
+              <td class="py-3.5 px-5 text-center text-emerald-800 bg-[#E8F8F0]/30 font-medium">
+                Instant — user.tier = 'free', 89% of failures
+              </td>
+            </tr>
+
+            <!-- Row 3 -->
+            <tr class="divide-x divide-zinc-200">
+              <td class="py-3.5 px-5 text-center font-bold text-zinc-900 bg-white">
+                What did the database return?
+              </td>
+              <td class="py-3.5 px-5 text-center text-red-600 bg-white font-medium">
+                60 min — redeploy needed, not logged
+              </td>
+              <td class="py-3.5 px-5 text-center text-emerald-800 bg-[#E8F8F0]/30 font-medium">
+                Instant — balance = null, timed out after 3000ms
+              </td>
+            </tr>
+
+            <!-- Row 4 -->
+            <tr class="divide-x divide-zinc-200">
+              <td class="py-3.5 px-5 text-center font-bold text-zinc-900 bg-white">
+                Why did the database fail?
+              </td>
+              <td class="py-3.5 px-5 text-center text-red-600 bg-white font-medium">
+                60 min — pool state invisible to logs
+              </td>
+              <td class="py-3.5 px-5 text-center text-emerald-800 bg-[#E8F8F0]/30 font-medium">
+                Instant — pool 5/5 full, 12 requests queued
+              </td>
+            </tr>
+
+            <!-- Row 5 -->
+            <tr class="divide-x divide-zinc-200">
+              <td class="py-3.5 px-5 text-center font-bold text-zinc-900 bg-white">
+                What damage to users?
+              </td>
+              <td class="py-3.5 px-5 text-center text-red-600 bg-white font-medium">
+                90 min — silent null→zero only visible after multiple deploys
+              </td>
+              <td class="py-3.5 px-5 text-center text-emerald-800 bg-[#E8F8F0]/30 font-medium">
+                Instant — null treated as zero, user saw wrong error
+              </td>
+            </tr>
+
+            <!-- Row 6: Total Time -->
+            <tr class="divide-x divide-zinc-200 border-b border-zinc-200">
+              <td class="py-3.5 px-5 text-center font-extrabold text-zinc-900 bg-white">
+                Total Time
+              </td>
+              <td class="py-3.5 px-5 text-center text-red-600 bg-white font-bold font-mono tracking-tight text-sm sm:text-base">
+                3-4 hours
+              </td>
+              <td class="py-3.5 px-5 text-center text-emerald-800 bg-[#E8F8F0]/30 font-bold font-mono tracking-tight text-sm sm:text-base">
+                9 minutes
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</section>

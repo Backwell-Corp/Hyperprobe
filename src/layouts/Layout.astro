@@ -1,0 +1,87 @@
+---
+// src/layouts/Layout.astro
+import '../styles/global.css';
+import SEO from '../components/seo/SEO.astro';
+import JSONLD from '../components/seo/JSONLD.astro';
+import ScriptManager from '../components/seo/ScriptManager.astro';
+import { ClientRouter } from 'astro:transitions';
+
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface BreadcrumbItem {
+  name: string;
+  item: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  ogType?: 'website' | 'article';
+  schemaTypes?: ('Organization' | 'SoftwareApplication' | 'FAQ' | 'Breadcrumb')[];
+  faqItems?: FAQItem[];
+  breadcrumbItems?: BreadcrumbItem[];
+}
+
+const {
+  title,
+  description,
+  image,
+  ogType = 'website',
+  schemaTypes = ['Organization', 'SoftwareApplication'],
+  faqItems,
+  breadcrumbItems,
+} = Astro.props;
+
+const gtmId = import.meta.env.PUBLIC_GTM_ID;
+const pixelId = import.meta.env.PUBLIC_META_PIXEL_ID;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <SEO title={title} description={description} image={image} ogType={ogType} />
+    <JSONLD types={schemaTypes} faqItems={faqItems} breadcrumbItems={breadcrumbItems} />
+    <ScriptManager />
+    <ClientRouter />
+  </head>
+  <body class="bg-white text-zinc-900 min-h-screen flex flex-col font-sans selection:bg-brand-primary/10 selection:text-brand-primary">
+    <!-- Google Tag Manager (noscript) -->
+    {gtmId && (
+      <noscript>
+        <iframe 
+          src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
+          height="0" 
+          width="0" 
+          style="display:none;visibility:hidden"
+        ></iframe>
+      </noscript>
+    )}
+
+    <!-- Meta Pixel (noscript) -->
+    {pixelId && (
+      <noscript>
+        <img 
+          height="1" 
+          width="1" 
+          style="display:none" 
+          src={`https://www.facebook.com/tr?id=${pixelId}&ev=PageView&noscript=1`}
+          alt=""
+        />
+      </noscript>
+    )}
+
+    <!-- Global Grid Overlay (Light mode optimized) -->
+    <div class="fixed inset-0 grid-bg pointer-events-none opacity-[0.25] z-[1]"></div>
+    
+    <!-- Coral Ambient Soft Fade Block -->
+    <div class="fixed top-[-15%] left-[-10%] w-[60vw] h-[60vw] rounded-full bg-brand-primary/[0.03] blur-[140px] pointer-events-none z-[1] animate-pulse-slow"></div>
+
+    <div class="relative z-10 flex flex-col flex-grow">
+      <slot />
+    </div>
+  </body>
+</html>

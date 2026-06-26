@@ -1,0 +1,119 @@
+---
+// src/components/sections/Hero.astro
+import Button from '@components/ui/Button.astro';
+---
+
+<section class="relative overflow-hidden z-10 bg-white border-b border-zinc-100">
+  <div class="max-w-[1380px] mx-auto px-6 py-16 md:px-16 md:py-[100px] relative">
+    <div class="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-12 lg:gap-16 xl:gap-20 items-center">
+      
+      <!-- Headline & Content (Left text col) -->
+      <div class="text-left space-y-6">
+        
+        <!-- Y Combinator Badge (Exact visual replica) -->
+        <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-none bg-[#f6f6ef] border border-[#f0f0e8] hover:border-[#ff6600]/30 transition-colors duration-300">
+          <span class="inline-flex h-5 w-5 bg-[#ff6600] text-white font-bold text-xs items-center justify-center rounded-sm font-sans select-none">Y</span>
+          <span class="text-[10px] font-mono font-bold text-zinc-500 tracking-wide uppercase">Y COMBINATOR · S26</span>
+        </div>
+
+        <!-- Serif Headline (Matches screenshot) -->
+        <h1 class="hero-heading">
+          Your coding agent writes code.
+          <span class="line2">Now let it fix prod too.</span>
+        </h1>
+        
+        <!-- Paragraphs (Matches subhead styles) -->
+        <div class="space-y-4 max-w-xl subhead">
+          <p>
+            If your team uses <strong>Cursor, Claude Code, or Codex</strong>, you know the workflow. When prod breaks, you’re grepping logs, adding <code>console.log</code>s, redeploying, hoping the AI’s guess is right. <em>It can take hours.</em>
+          </p>
+          <p>
+            Hyperprobe’s SDK lets your coding agent capture actual runtime state from your running services. Non-blocking probes, real variable values, <em>fix in minutes.</em>
+          </p>
+        </div>
+
+        <!-- Read-only text below paragraph -->
+        <p class="safety-line italic font-light">
+          Read-only. PII redacted by default. &lt;1% overhead.
+        </p>
+
+        <!-- Single Action Button (TRY IN STAGING points to /get-demo) -->
+        <div class="pt-2">
+          <Button href="/get-demo" variant="primary" class="font-bold px-8 font-sans">
+            Try in Staging
+          </Button>
+        </div>
+
+        <!-- Compatible framework list -->
+        <p class="text-xs text-zinc-500 font-mono pt-4 flex flex-wrap gap-x-2 gap-y-1 items-center">
+          <span class="text-zinc-400">Works with Cursor, Claude Code, Codex</span>
+          <span class="text-zinc-300 select-none">·</span>
+          <span>Node.js</span>
+          <span class="text-zinc-300 select-none">·</span>
+          <span>Java</span>
+          <span class="text-zinc-300 select-none">·</span>
+          <span>Python</span>
+        </p>
+
+        <!-- Final tag tagline -->
+        <p class="category-claim italic pt-1">
+          The runtime data layer for AI-native software.
+        </p>
+      </div>
+
+      <!-- Hero Mockup Board Visual (Right col) -->
+      <div class="relative w-full max-w-lg mx-auto lg:max-w-none select-none">
+        <div class="relative rounded-[24px] border border-zinc-200 bg-white shadow-md overflow-hidden">
+          
+          <!-- Mockup Header with beige background -->
+          <div class="bg-[#F8F6F2] border-b border-zinc-200 px-6 py-4.5 sm:px-8 sm:py-5">
+            <span class="text-[11px] font-sans font-semibold text-zinc-500 tracking-widest uppercase block">
+              WHAT CHANGES WITH HYPERPROBE
+            </span>
+          </div>
+
+          <!-- Comparison Table Rows (Grid layout matching screenshot) -->
+          <div class="divide-y divide-zinc-200/80">
+            
+            <!-- Row 1 -->
+            <div class="grid grid-cols-12 gap-3 items-center px-6 py-5 sm:px-8 sm:py-6 text-zinc-800 text-sm sm:text-base">
+              <div class="col-span-6 font-sans font-medium text-zinc-700">Time to root cause</div>
+              <div class="col-span-2 text-right font-mono text-[#C0392B] line-through decoration-[#C0392B] decoration-2">3–4 hrs</div>
+              <div class="col-span-1 text-center font-mono text-zinc-300">→</div>
+              <div class="col-span-3 text-right font-sans font-bold text-[#0F766E] text-sm sm:text-base">~9 min</div>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="grid grid-cols-12 gap-3 items-center px-6 py-5 sm:px-8 sm:py-6 text-zinc-800 text-sm sm:text-base">
+              <div class="col-span-6 font-sans font-medium text-zinc-700">Redeployments per incident</div>
+              <div class="col-span-2 text-right font-mono text-[#C0392B] line-through decoration-[#C0392B] decoration-2">3–4*</div>
+              <div class="col-span-1 text-center font-mono text-zinc-300">→</div>
+              <div class="col-span-3 text-right font-sans font-bold text-[#0F766E] text-sm sm:text-base">0</div>
+            </div>
+
+            <!-- Row 3 -->
+            <div class="grid grid-cols-12 gap-3 items-center px-6 py-5 sm:px-8 sm:py-6 text-zinc-800 text-sm sm:text-base">
+              <div class="col-span-6 font-sans font-medium text-zinc-700">Senior engineers pulled in</div>
+              <div class="col-span-2 text-right font-mono text-[#C0392B] line-through decoration-[#C0392B] decoration-2">2–3</div>
+              <div class="col-span-1 text-center font-mono text-zinc-300">→</div>
+              <div class="col-span-3 text-right font-sans font-bold text-[#0F766E] text-sm sm:text-base">1</div>
+            </div>
+
+            <!-- Row 4 -->
+            <div class="grid grid-cols-12 gap-3 items-center px-6 py-5 sm:px-8 sm:py-6 text-zinc-800 text-sm sm:text-base">
+              <div class="col-span-6 font-sans font-medium text-zinc-700">Observability bill</div>
+              <div class="col-span-2 text-right font-mono text-[#C0392B] font-bold">—</div>
+              <div class="col-span-1 text-center font-mono text-zinc-300">→</div>
+              <div class="col-span-3 text-right font-sans font-bold text-[#0F766E] text-xs sm:text-sm md:text-base leading-tight">
+                Reduced 40–<br class="hidden sm:inline" />60%
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

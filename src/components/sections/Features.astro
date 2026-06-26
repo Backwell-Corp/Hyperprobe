@@ -1,0 +1,135 @@
+---
+// src/components/sections/Features.astro
+---
+
+<section id="features" class="relative z-10 bg-zinc-50/60 border-t border-zinc-100">
+  <div class="max-w-[1380px] mx-auto px-6 py-16 md:px-16 md:py-[100px]">
+    
+    <!-- Section Heading (Matches screenshot) -->
+    <div class="text-left max-w-3xl mb-16">
+      <span class="eyebrow block mb-3">— HOW IT WORKS</span>
+      <h2 class="section-heading mb-4">
+        You know the exception,<br class="hidden sm:inline" />
+        <span class="accent">you don't know what caused it.</span>
+      </h2>
+      <p class="body-text">
+        Hyperprobe listens for uncaught exceptions in your backend, unwinds the call stack, and retrieves the exact local variables at that instant.
+      </p>
+    </div>
+
+    <!-- Interactive Debugger Visual (Matches screenshot layout) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 items-stretch">
+      
+      <!-- Variables Inspector Panel (Left 5 cols) -->
+      <div class="lg:col-span-5 rounded-none border border-zinc-200 bg-white shadow-sm overflow-hidden flex flex-col justify-between">
+        
+        <!-- Panel Header -->
+        <div class="border-b border-zinc-100 bg-zinc-50 px-5 py-3.5 flex items-center justify-between">
+          <span class="text-xs font-mono font-bold text-zinc-600">VARIABLES INSPECTOR</span>
+          <span class="inline-flex items-center px-1.5 py-0.5 rounded-full text-[9px] font-mono font-medium bg-red-100 text-red-800">unwound frame #01</span>
+        </div>
+
+        <!-- Scope Tree variables mapping -->
+        <div class="p-5 font-mono text-[11px] space-y-4 flex-grow text-zinc-700">
+          
+          <!-- Scope section -->
+          <div>
+            <span class="text-[10px] font-sans font-bold uppercase tracking-wider text-zinc-400 block mb-2">Local Scope Parameters</span>
+            <div class="space-y-2 pl-2 border-l border-zinc-100">
+              <div class="flex justify-between items-baseline">
+                <span class="text-zinc-400">this.client</span>
+                <span class="text-zinc-800 font-medium">StripeInstance</span>
+              </div>
+              <div class="space-y-1.5 pt-1">
+                <div class="flex justify-between items-baseline">
+                  <span class="text-zinc-500">payload</span>
+                  <span class="text-zinc-400">Object</span>
+                </div>
+                <!-- Nested object variables -->
+                <div class="pl-4 space-y-1 border-l border-zinc-100/80">
+                  <div class="flex justify-between items-baseline bg-red-50/50 px-1 py-0.5 rounded">
+                    <span class="text-zinc-500">totalAmount</span>
+                    <span class="text-red-600 font-bold">undefined</span>
+                  </div>
+                  <div class="flex justify-between items-baseline">
+                    <span class="text-zinc-500">currencyCode</span>
+                    <span class="text-zinc-800">"USD"</span>
+                  </div>
+                  <div class="flex justify-between items-baseline">
+                    <span class="text-zinc-500">userId</span>
+                    <span class="text-zinc-800">"usr_9f82d1c"</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Network/Header Scope -->
+          <div class="pt-2">
+            <span class="text-[10px] font-sans font-bold uppercase tracking-wider text-zinc-400 block mb-2">Request Headers</span>
+            <div class="space-y-2 pl-2 border-l border-zinc-100">
+              <div class="flex justify-between items-baseline">
+                <span class="text-zinc-400">authorization</span>
+                <span class="text-zinc-400 font-mono">"Bearer stripe_sk_live_*****"</span>
+              </div>
+              <div class="flex justify-between items-baseline">
+                <span class="text-zinc-400">user-agent</span>
+                <span class="text-zinc-600 truncate max-w-[200px]">"Mozilla/5.0 (Macintosh; Intel Mac..."</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Panel Footer -->
+        <div class="border-t border-zinc-100 bg-zinc-50 px-5 py-3 flex items-center justify-between text-[10px] font-mono text-zinc-400">
+          <span>PII REDACTED LOCALLY</span>
+          <span class="text-emerald-700">COMPLIANT</span>
+        </div>
+
+      </div>
+
+      <!-- Code Execution Panel (Right 7 cols) -->
+      <div class="lg:col-span-7 rounded-none border border-zinc-200 bg-white shadow-sm overflow-hidden flex flex-col justify-between min-h-[380px]">
+        
+        <!-- Panel Header -->
+        <div class="border-b border-zinc-100 bg-zinc-50 px-5 py-3.5 flex items-center justify-between">
+          <span class="text-xs font-mono font-bold text-zinc-600">src/services/stripe.ts</span>
+          <span class="text-[10px] font-mono text-zinc-400">TypeScript / Node.js</span>
+        </div>
+
+        <!-- Code Content -->
+        <div class="p-5 font-mono text-[11px] sm:text-xs overflow-x-auto space-y-1.5 flex-grow">
+          <div class="flex opacity-40"><span class="w-8 text-zinc-400 select-none">101</span><span class="text-zinc-800">export async function processPayment(payload: CheckoutPayload) &lbrace;</span></div>
+          <div class="flex opacity-40"><span class="w-8 text-zinc-400 select-none">102</span><span class="text-zinc-800">  const client = getStripeInstance();</span></div>
+          <div class="flex opacity-40"><span class="w-8 text-zinc-400 select-none">103</span><span class="text-zinc-800">  try &lbrace;</span></div>
+          <div class="flex bg-red-50 border-l-2 border-red-500 py-0.5 -mx-5 px-5"><span class="w-8 text-red-600 select-none">104</span><span class="text-zinc-900 font-semibold">    const charge = await client.charges.create(&lbrace;</span></div>
+          <div class="flex bg-red-50 border-l-2 border-red-500 py-0.5 -mx-5 px-5"><span class="w-8 text-zinc-400 select-none">105</span><span class="text-zinc-900 font-semibold">      amount: payload.totalAmount,</span></div>
+          <div class="flex bg-red-50 border-l-2 border-red-500 py-0.5 -mx-5 px-5"><span class="w-8 text-zinc-400 select-none">106</span><span class="text-zinc-900 font-semibold">      currency: payload.currencyCode.toLowerCase(),</span></div>
+          <div class="flex bg-red-50 border-l-2 border-red-500 py-0.5 -mx-5 px-5"><span class="w-8 text-zinc-400 select-none">107</span><span class="text-zinc-900 font-semibold">    &rbrace;);</span></div>
+          <div class="flex opacity-40"><span class="w-8 text-zinc-400 select-none">108</span><span class="text-zinc-800">  &rbrace; catch (err) &lbrace;</span></div>
+          <div class="flex opacity-40"><span class="w-8 text-zinc-400 select-none">109</span><span class="text-zinc-800">    throw new StripeCardDeclinedException(err.message);</span></div>
+          <div class="flex opacity-40"><span class="w-8 text-zinc-400 select-none">110</span><span class="text-zinc-800">  &rbrace;</span></div>
+        </div>
+
+        <!-- Red alert diagnostics box at bottom -->
+        <div class="border-t border-red-100 bg-red-50/40 p-5 font-sans">
+          <div class="flex items-start gap-2.5 text-xs text-red-800">
+            <svg class="w-4 h-4 text-red-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+            <div class="space-y-1">
+              <p class="font-bold font-mono text-red-900">StripeCardDeclinedException</p>
+              <p class="text-red-700/90 leading-relaxed font-light">
+                Cannot read properties of undefined (reading 'toLowerCase') - totalAmount parameter was missing.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>

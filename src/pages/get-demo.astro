@@ -1,0 +1,384 @@
+---
+// src/pages/get-demo.astro
+export const prerender = true;
+
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/sections/Navbar.astro';
+import Footer from '../components/sections/Footer.astro';
+import Input from '../components/ui/Input.astro';
+import Select from '../components/ui/Select.astro';
+import Button from '@components/ui/Button.astro';
+
+const languageOptions = [
+  { value: 'TypeScript', label: 'TypeScript' },
+  { value: 'Python', label: 'Python' },
+  { value: 'Java', label: 'Java' },
+  { value: 'Node.js', label: 'Node.js' },
+  { value: 'Kotlin', label: 'Kotlin' },
+  { value: 'PHP', label: 'PHP' },
+  { value: 'Scala', label: 'Scala' },
+  { value: 'Go', label: 'Go' },
+  { value: 'Rust', label: 'Rust' },
+  { value: 'C#', label: 'C#' },
+  { value: 'C++', label: 'C++' },
+  { value: 'Others', label: 'Others' }
+];
+
+const breadcrumbItems = [
+  { name: 'Home', item: '/' },
+  { name: 'Get a Demo', item: '/get-demo' }
+];
+---
+
+<Layout 
+  title="Request a Product Demo | Hyperprobe" 
+  description="Book a live walkthrough of the Hyperprobe continuous debugger and see how we reconstruct production stack frames and trace context variables with eBPF."
+  schemaTypes={['Breadcrumb']}
+  breadcrumbItems={breadcrumbItems}
+>
+  <Navbar />
+
+  <main class="flex-grow relative z-10 px-4 sm:px-6 lg:px-8 py-16 md:py-24 max-w-7xl mx-auto w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+      
+      <!-- Left Column: Copy, YC Badge, Testimonial -->
+      <div class="lg:col-span-6 flex flex-col space-y-8 lg:sticky lg:top-28">
+        <!-- Go back link -->
+        <a href="/" class="inline-flex items-center gap-1.5 text-xs text-zinc-500 hover:text-zinc-800 transition-colors font-mono self-start">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Back to home
+        </a>
+
+        <!-- Headline & YC badge -->
+        <div class="space-y-4">
+          <!-- Y Combinator Badge -->
+          <div class="inline-flex items-center gap-2 px-2 py-0.5 rounded-none bg-[#f6f6ef] border border-[#f0f0e8] hover:border-[#ff6600]/30 transition-colors duration-300">
+            <span class="inline-flex h-4.5 w-4.5 bg-[#ff6600] text-white font-bold text-[10px] items-center justify-center rounded-xs font-sans select-none leading-none">Y</span>
+            <span class="text-[9px] font-mono font-bold text-zinc-500 tracking-wide uppercase">Y COMBINATOR · S26</span>
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-normal text-zinc-900 tracking-tight font-serif leading-tight">
+            Request a demo of <span class="text-brand-primary italic">Hyperprobe</span>
+          </h1>
+          <p class="text-zinc-600 text-sm sm:text-base font-light leading-relaxed">
+            Book a live product walkthrough. Our engineering team will prepare a custom sandbox walkthrough demonstrating how Hyperprobe intercepts state and resolves root cause based on your backend stack.
+          </p>
+        </div>
+
+        <!-- Single Premium Testimonial Card -->
+        <div class="rounded-xl border border-zinc-200 bg-white p-6 sm:p-8 shadow-sm flex flex-col justify-between hover:border-zinc-300 transition-colors max-w-md">
+          <div>
+            <div class="text-[#F59E0B] text-sm tracking-widest mb-4 select-none">
+              ★★★★★
+            </div>
+            <p class="text-zinc-800 text-[14px] sm:text-[15px] font-serif leading-relaxed mb-6">
+              "Sync issues used to take us days to reproduce locally. Hyperprobe caught the silent data mismatch in production on the first attempt."
+            </p>
+          </div>
+          <div class="pt-2">
+            <h4 class="text-xs sm:text-sm font-bold text-zinc-900 font-sans">Aishwarya Maurya</h4>
+            <p class="text-[11px] sm:text-xs text-zinc-500 mt-1 font-sans">
+              Tech Lead @ CheQ Digital
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Form Container -->
+      <div class="lg:col-span-6">
+        <!-- Form Box container -->
+        <div class="glass-panel p-6 sm:p-8 rounded-2xl border border-zinc-200 bg-white shadow-sm relative overflow-hidden max-w-[480px] lg:ml-auto w-full">
+          
+          <!-- Subtle top accent line -->
+          <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-primary to-brand-hover"></div>
+
+          <!-- Error panel banner (hidden by default) -->
+          <div id="form-error-banner" class="hidden p-4 rounded-xl bg-accent-rose/10 border border-accent-rose/25 text-accent-rose text-xs mb-6 flex gap-2.5 items-start" role="alert">
+            <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+            <div>
+              <span class="font-bold">Submission failed:</span>
+              <span id="form-error-message">Please correct the highlighted inputs below.</span>
+            </div>
+          </div>
+
+          <form id="demo-request-form" class="space-y-6" novalidate>
+            
+            <!-- Name Input -->
+            <Input 
+              label="Full Name" 
+              id="name" 
+              name="name" 
+              placeholder="Jane Smith" 
+              required 
+              autocomplete="name"
+            />
+
+            <!-- Email Input -->
+            <Input 
+              label="Work Email" 
+              id="email" 
+              name="email" 
+              type="email" 
+              placeholder="jane@framer.com" 
+              required 
+              autocomplete="email"
+            />
+
+            <!-- Grid for two fields -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <!-- Company Input -->
+              <Input 
+                label="Company Name" 
+                id="company" 
+                name="company" 
+                placeholder="Your company name" 
+                autocomplete="organization"
+              />
+              
+              <!-- Phone Number Input -->
+              <Input 
+                label="Phone Number" 
+                id="phone_number" 
+                name="phone_number" 
+                type="tel" 
+                placeholder="+1 (555) 000-0000" 
+                autocomplete="tel"
+                helperText="Support international format"
+              />
+            </div>
+
+            <!-- Backend Language Dropdown Select -->
+            <Select 
+              label="Primary Backend Language" 
+              id="backend_language" 
+              name="backend_language" 
+              options={languageOptions} 
+              required 
+              placeholder="Select language"
+            />
+
+            <!-- Source page tracker hidden field -->
+            <input type="hidden" name="source_page" value="get-demo" />
+
+            <!-- Submit Action -->
+            <Button type="submit" variant="primary" class="w-full font-bold relative justify-center rounded-none" size="lg">
+              <span id="btn-text">Request Demo</span>
+              
+              <!-- Loading Spinner (hidden by default) -->
+              <svg id="btn-spinner" class="hidden animate-spin h-5 w-5 text-white absolute" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+            </Button>
+
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  // Dynamic form execution logic
+  function setupDemoForm() {
+    const form = document.getElementById('demo-request-form') as HTMLFormElement;
+    if (!form) return;
+
+    const errorBanner = document.getElementById('form-error-banner');
+    const errorMessageSpan = document.getElementById('form-error-message');
+    const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+    const btnText = document.getElementById('btn-text');
+    const btnSpinner = document.getElementById('btn-spinner');
+
+    // Simple helpers to display and clear errors on input fields
+    function setInputError(inputId: string, message: string) {
+      const inputEl = document.getElementById(inputId);
+      if (!inputEl) return;
+
+      inputEl.classList.add('border-accent-rose/60', 'focus:border-accent-rose', 'focus:ring-accent-rose');
+      inputEl.classList.remove('border-zinc-200', 'focus:border-brand-primary', 'focus:ring-brand-primary');
+      inputEl.setAttribute('aria-invalid', 'true');
+
+      // Create or update error message node
+      const parent = inputEl.closest('.flex-col');
+      if (parent) {
+        let errLabel = parent.querySelector('.text-accent-rose');
+        if (!errLabel) {
+          const wrapper = parent.querySelector('.flex');
+          if (wrapper) {
+            errLabel = document.createElement('span');
+            errLabel.className = 'text-xs font-medium text-accent-rose';
+            errLabel.id = `${inputId}-error`;
+            errLabel.setAttribute('role', 'alert');
+            wrapper.appendChild(errLabel);
+          }
+        }
+        if (errLabel) {
+          errLabel.textContent = message;
+        }
+      }
+    }
+
+    function clearInputError(inputId: string) {
+      const inputEl = document.getElementById(inputId);
+      if (!inputEl) return;
+
+      inputEl.classList.remove('border-accent-rose/60', 'focus:border-accent-rose', 'focus:ring-accent-rose');
+      inputEl.classList.add('border-zinc-200', 'focus:border-brand-primary', 'focus:ring-brand-primary');
+      inputEl.setAttribute('aria-invalid', 'false');
+
+      const parent = inputEl.closest('.flex-col');
+      if (parent) {
+        const errLabel = parent.querySelector('.text-accent-rose');
+        if (errLabel) {
+          errLabel.remove();
+        }
+      }
+    }
+
+    // Attach blur listeners for real-time verification feedback
+    const fields = ['name', 'email', 'backend_language'];
+    fields.forEach(fieldId => {
+      const el = document.getElementById(fieldId);
+      if (el) {
+        el.addEventListener('input', () => clearInputError(fieldId));
+        el.addEventListener('change', () => clearInputError(fieldId));
+      }
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      // Reset layout banner and styles
+      if (errorBanner) errorBanner.classList.add('hidden');
+      fields.forEach(f => clearInputError(f));
+
+      const formData = new FormData(form);
+      const name = formData.get('name') as string;
+      const email = formData.get('email') as string;
+      const company = formData.get('company') as string;
+      const phone_number = formData.get('phone_number') as string;
+      const backend_language = formData.get('backend_language') as string;
+      const source_page = formData.get('source_page') as string;
+
+      // Client-side validations
+      let hasError = false;
+
+      if (!name || name.trim() === '') {
+        setInputError('name', 'Name is required');
+        hasError = true;
+      }
+
+      if (!email || email.trim() === '') {
+        setInputError('email', 'Email is required');
+        hasError = true;
+      } else {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          setInputError('email', 'Please enter a valid work email');
+          hasError = true;
+        }
+      }
+
+      if (!backend_language) {
+        setInputError('backend_language', 'Backend language is required');
+        hasError = true;
+      }
+
+      if (phone_number && phone_number.trim() !== '') {
+        // Optional but basic check for international numbers length
+        const cleanedPhone = phone_number.replace(/\D/g, '');
+        if (cleanedPhone.length < 7) {
+          setInputError('phone_number', 'Please enter a valid phone number');
+          hasError = true;
+        }
+      }
+
+      if (hasError) {
+        if (errorBanner && errorMessageSpan) {
+          errorMessageSpan.textContent = 'Please correct the highlighted inputs below.';
+          errorBanner.classList.remove('hidden');
+          // Focus first invalid field
+          const firstInvalid = form.querySelector('[aria-invalid="true"]') as HTMLElement;
+          if (firstInvalid) firstInvalid.focus();
+        }
+        return;
+      }
+
+      // 2. Client passes validation, show loading spinner
+      if (submitBtn && btnText && btnSpinner) {
+        submitBtn.disabled = true;
+        btnText.classList.add('invisible');
+        btnSpinner.classList.remove('hidden');
+      }
+
+      try {
+        const response = await fetch('/api/submit-demo', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            company,
+            phone_number,
+            backend_language,
+            source_page
+          })
+        });
+
+        const result = await response.json() as any;
+
+        if (response.ok && result.success) {
+          // Success: redirect to thank you page
+          window.location.href = '/thank-you';
+        } else {
+          // Server returned validation or runtime errors
+          if (errorBanner && errorMessageSpan) {
+            errorMessageSpan.textContent = result.message || 'An error occurred during submission.';
+            errorBanner.classList.remove('hidden');
+            
+            // Map server side field errors if returned
+            if (result.errors) {
+              Object.keys(result.errors).forEach(key => {
+                setInputError(key, result.errors[key]);
+              });
+            }
+          }
+          
+          // Re-enable button
+          if (submitBtn && btnText && btnSpinner) {
+            submitBtn.disabled = false;
+            btnText.classList.remove('invisible');
+            btnSpinner.classList.add('hidden');
+          }
+        }
+      } catch (err) {
+        console.error('Submission failed:', err);
+        if (errorBanner && errorMessageSpan) {
+          errorMessageSpan.textContent = 'Failed to submit request due to network connection issues. Please try again.';
+          errorBanner.classList.remove('hidden');
+        }
+        // Re-enable button
+        if (submitBtn && btnText && btnSpinner) {
+          submitBtn.disabled = false;
+          btnText.classList.remove('invisible');
+          btnSpinner.classList.add('hidden');
+        }
+      }
+    });
+  }
+
+  // Load setup on View Transitions
+  document.addEventListener('astro:page-load', setupDemoForm);
+</script>

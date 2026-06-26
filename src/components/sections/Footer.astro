@@ -1,0 +1,41 @@
+---
+// src/components/sections/Footer.astro
+---
+
+<footer class="w-full border-t border-zinc-150 bg-zinc-50 py-12 md:py-16 relative z-10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+      
+      <!-- Copy info -->
+      <div class="flex flex-col gap-2">
+        <div class="flex items-center gap-3">
+          <span class="text-lg font-semibold tracking-tight text-zinc-900 font-serif">
+            Hyperprobe
+          </span>
+          <!-- Y Combinator Badge (Exact visual replica) -->
+          <div class="inline-flex items-center gap-2 px-2 py-0.5 rounded-none bg-[#f6f6ef] border border-[#f0f0e8] hover:border-[#ff6600]/30 transition-colors duration-300">
+            <span class="inline-flex h-4.5 w-4.5 bg-[#ff6600] text-white font-bold text-[10px] items-center justify-center rounded-xs font-sans select-none leading-none">Y</span>
+            <span class="text-[9px] font-mono font-bold text-zinc-500 tracking-wide uppercase">Y COMBINATOR · S26</span>
+          </div>
+        </div>
+        <p class="text-sm text-zinc-500 font-mono">
+          &copy; 2026 Hyperprobe. Built for engineers who debug in production.
+        </p>
+      </div>
+
+      <!-- Footer Navigation and Links -->
+      <div class="flex flex-wrap items-center gap-6 md:gap-8">
+        <a href="/privacy" class="text-sm text-zinc-500 hover:text-zinc-900 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-primary rounded-none px-1.5 py-0.5">
+          Privacy Policy
+        </a>
+        <a href="/terms" class="text-sm text-zinc-500 hover:text-zinc-900 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-primary rounded-none px-1.5 py-0.5">
+          Terms
+        </a>
+        <a href="mailto:support@hyperprobe.io" class="text-sm text-zinc-500 hover:text-zinc-900 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-primary rounded-none px-1.5 py-0.5">
+          Contact
+        </a>
+      </div>
+
+    </div>
+  </div>
+</footer>

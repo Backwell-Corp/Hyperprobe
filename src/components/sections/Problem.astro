@@ -1,0 +1,50 @@
+---
+// src/components/sections/Problem.astro
+---
+
+<section id="problem" class="relative z-10 bg-[#fff5f5] border-y border-red-100/50">
+  <div class="max-w-[1380px] mx-auto px-6 py-16 md:px-16 md:py-[100px]">
+    
+    <!-- Section Heading -->
+    <div class="text-left max-w-5xl mb-16">
+      <span class="eyebrow block mb-3">— THE PROBLEM</span>
+      <h2 class="section-heading mb-4">
+        Your AI agent saw the same exception.<br class="hidden sm:inline" />
+        <span class="accent">It still can't tell you what caused it.</span>
+      </h2>
+      <p class="body-text">
+        Your AI agent reads the same logs you do. It reasons over the same traces, the same metrics, the same stack traces. And when it diagnoses? It produces a confident, plausible answer that turns out to be wrong — because the evidence it needed wasn't in the log stream. The bug is still there. Your customers still hit it.
+      </p>
+    </div>
+
+    <!-- Stats Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+      
+      <!-- Card 1 -->
+      <div class="rounded-none border border-red-100/80 bg-white p-8 shadow-sm flex flex-col justify-between min-h-[180px]">
+        <h3 class="text-4xl sm:text-5xl font-black text-brand-primary tracking-tight mb-4">3-4h</h3>
+        <p class="text-zinc-500 text-xs sm:text-sm font-light leading-relaxed">
+          Average time spent searching through scattered log lines to manually reconstruct application state.
+        </p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="rounded-none border border-red-100/80 bg-white p-8 shadow-sm flex flex-col justify-between min-h-[180px]">
+        <h3 class="text-4xl sm:text-5xl font-black text-brand-primary tracking-tight mb-4">45m</h3>
+        <p class="text-zinc-500 text-xs sm:text-sm font-light leading-relaxed">
+          Average time required for a developer to re-enter the deep flow zone after a context switch.
+        </p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="rounded-none border border-red-200 bg-white p-8 shadow-sm flex flex-col justify-between min-h-[180px] ring-2 ring-brand-primary/10">
+        <h3 class="text-4xl sm:text-5xl font-black text-brand-primary tracking-tight mb-4">10m</h3>
+        <p class="text-zinc-600 text-xs sm:text-sm font-medium leading-relaxed">
+          Total time spent identifying, tracing variables, and deploying a permanent patch using Hyperprobe.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>

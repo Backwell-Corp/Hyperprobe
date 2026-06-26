@@ -1,0 +1,38 @@
+---
+// src/components/sections/CTASection.astro
+import Button from '@components/ui/Button.astro';
+---
+
+<section class="relative z-10 bg-white">
+  <div class="max-w-[1380px] mx-auto px-6 py-16 md:px-16 md:py-[100px]">
+    
+    <!-- CTA Card Container (Matches screenshot) -->
+    <div class="relative bg-zinc-50/70 rounded-none p-8 md:p-14 text-center overflow-hidden shadow-sm border border-zinc-200">
+      
+      <!-- Subtle internal glow elements -->
+      <div class="absolute -top-1/2 -left-1/2 w-full h-full rounded-none bg-brand-primary/[0.01] blur-[120px] pointer-events-none"></div>
+      
+      <div class="relative z-10 max-w-3xl mx-auto space-y-6">
+        
+        <h2 class="section-heading text-center mx-auto">
+          Your next production incident is coming.<br class="hidden sm:inline" />
+          Will your team have <span class="accent">Hyperprobe ready?</span>
+        </h2>
+        
+        <p class="body-text text-center mx-auto">
+          Set up takes 5 minutes. No code changes required.
+        </p>
+
+        <div class="pt-4 flex flex-col items-center justify-center gap-4">
+          <Button href="/get-demo" variant="primary" size="lg" class="w-full sm:w-auto font-bold px-8 font-sans">
+            Request a Demo
+          </Button>
+          <p class="trust-line mt-2">Zero code changes. PII redacted. Under 1% CPU overhead.</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>

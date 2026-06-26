@@ -1,0 +1,153 @@
+---
+// src/components/sections/FAQ.astro
+import Button from '@components/ui/Button.astro';
+
+const faqs = [
+  {
+    id: "datadog",
+    question: "We already have Datadog. Why do we need this?",
+    answer: "Datadog tells you something broke. Hyperprobe tells you why. There's a gap between those two things — it's where your engineers spend 3–4 hours per incident. Hyperprobe fills that gap without replacing Datadog. The sale typically comes out of your existing observability budget."
+  },
+  {
+    id: "logging",
+    question: "We do extensive logging. Isn't this redundant?",
+    answer: "Logs capture what you anticipated. Production bugs happen in the gaps — the variable state you didn't think to log, the DB return you assumed would never be null, the pool condition you didn't know to watch. Hyperprobe captures the exact state at the moment of failure, regardless of what you logged. It's not a replacement for logging. It's what you reach for when your logs don't have the answer."
+  },
+  {
+    id: "security-risk",
+    question: "Is there a security risk with an in-process agent?",
+    answer: "The agent is read-only — it cannot execute code or write to memory. Every probe requires explicit approval. Breakpoints auto-deactivate at 0.5% CPU impact and expire after 30 minutes by default. Everything runs inside your VPC. PII is redacted at agent level before anything leaves your cluster."
+  },
+  {
+    id: "setup-process",
+    question: "What does setup actually look like — and how long does it take?",
+    answer: "Add one dependency to your pom.xml, deploy to production once, install the VS Code plugin. That's it. We've seen engineers place their first live breakpoint within 20 minutes of starting. We onboard every early access customer personally — if anything takes longer than 30 minutes, that's on us."
+  },
+  {
+    id: "ai-layer",
+    question: "Does this work without the AI layer?",
+    answer: "Yes. The core product is live breakpoints — place one, capture the snapshot, read the variable state yourself. The AI layer reads the snapshot and explains root cause in plain English, but it's additive. Engineers who know their codebase well often don't need it. Engineers on unfamiliar services find it cuts investigation time in half again."
+  },
+  {
+    id: "languages-tools",
+    question: "What languages and tools are supported?",
+    answer: "Java, Scala, Kotlin, Node.js, and Python today. VS Code plugin available now. IntelliJ on the roadmap. If your stack runs on JVM or Node — you're covered from day one."
+  }
+];
+---
+
+<section id="faq" class="relative z-10 bg-white border-t border-zinc-100">
+  <div class="max-w-[1380px] mx-auto px-6 py-16 md:px-16 md:py-[100px]">
+    
+    <!-- Section Heading -->
+    <div class="text-left max-w-5xl mb-16">
+      <span class="eyebrow block mb-3">— FAQs</span>
+      <h2 class="section-heading mb-4">
+        Questions engineers <br class="sm:hidden" />
+        <span class="accent">actually ask.</span>
+      </h2>
+    </div>
+
+    <!-- Accordion FAQ List -->
+    <div class="space-y-4">
+      {faqs.map((faq) => (
+        <div class="rounded-none overflow-hidden border border-zinc-200 bg-white transition-all duration-300 shadow-sm">
+          
+          <!-- Accordion Header -->
+          <h3>
+            <button
+              type="button"
+              id={`faq-trigger-${faq.id}`}
+              class="faq-trigger w-full flex items-center justify-between px-6 py-5 text-left font-bold text-zinc-800 hover:text-zinc-900 transition-colors duration-200 focus-visible:outline-none focus-visible:bg-zinc-50 cursor-pointer"
+              aria-expanded="false"
+              aria-controls={`faq-content-${faq.id}`}
+            >
+              <span class="text-sm sm:text-base pr-4 font-sans">{faq.question}</span>
+              <!-- Chevron Icon -->
+              <svg 
+                class="chevron w-4 h-4 text-brand-primary transition-transform duration-300 shrink-0" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor" 
+                stroke-width="2.5"
+                aria-hidden="true"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+          </h3>
+
+          <!-- Accordion Panel (hidden by default) -->
+          <div
+            id={`faq-content-${faq.id}`}
+            class="faq-content overflow-hidden max-h-0 transition-all duration-300 ease-in-out"
+            role="region"
+            aria-labelledby={`faq-trigger-${faq.id}`}
+          >
+            <div class="px-6 pb-6 pt-1 text-xs sm:text-sm text-zinc-500 font-light leading-relaxed border-t border-zinc-100 mt-1">
+              {faq.answer}
+            </div>
+          </div>
+
+        </div>
+      ))}
+    </div>
+
+    <!-- Still got questions CTA (Matches screenshot) -->
+    <div class="mt-16 text-center border-t border-zinc-150 pt-10 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="text-left">
+        <h4 class="text-base font-bold text-zinc-900 mb-1">Still got questions?</h4>
+        <p class="text-zinc-500 text-xs sm:text-sm font-light">Schedule a short session with our platform engineering team.</p>
+      </div>
+      <Button href="/get-demo" variant="primary" class="font-bold shrink-0">
+        Book a Demo
+      </Button>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  function setupFAQAccordion() {
+    const triggers = document.querySelectorAll('.faq-trigger');
+
+    if (triggers.length === 0) return;
+
+    triggers.forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+        const contentId = trigger.getAttribute('aria-controls');
+        const contentPanel = document.getElementById(contentId || '');
+        const chevron = trigger.querySelector('.chevron');
+
+        if (!contentPanel || !chevron) return;
+
+        if (isExpanded) {
+          trigger.setAttribute('aria-expanded', 'false');
+          contentPanel.style.maxHeight = '0px';
+          chevron.classList.remove('rotate-180');
+        } else {
+          const allTriggers = document.querySelectorAll('.faq-trigger');
+          allTriggers.forEach(otherTrigger => {
+            if (otherTrigger !== trigger) {
+              otherTrigger.setAttribute('aria-expanded', 'false');
+              const otherContentId = otherTrigger.getAttribute('aria-controls');
+              const otherPanel = document.getElementById(otherContentId || '');
+              const otherChevron = otherTrigger.querySelector('.chevron');
+              if (otherPanel && otherChevron) {
+                otherPanel.style.maxHeight = '0px';
+                otherChevron.classList.remove('rotate-180');
+              }
+            }
+          });
+
+          trigger.setAttribute('aria-expanded', 'true');
+          contentPanel.style.maxHeight = `${contentPanel.scrollHeight}px`;
+          chevron.classList.add('rotate-180');
+        }
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', setupFAQAccordion);
+</script>

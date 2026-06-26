@@ -1,0 +1,147 @@
+---
+// src/components/sections/Pricing.astro
+import Button from '@components/ui/Button.astro';
+---
+
+<section id="pricing" class="py-20 md:py-28 relative z-10 bg-zinc-50/60 border-t border-zinc-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Heading -->
+    <div class="text-center max-w-3xl mx-auto mb-16 md:mb-24">
+      <span class="text-xs font-mono font-bold text-brand-primary tracking-wider uppercase bg-red-50 px-3 py-1 rounded-full border border-red-100">PRICING PLANS</span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-zinc-900 mt-6 mb-4 font-sans leading-tight">
+        Simple, predictable pricing <br class="sm:hidden" />
+        <span class="text-brand-primary">built to scale</span>
+      </h2>
+      <p class="text-zinc-500 text-sm sm:text-base font-light">
+        Start tracing exceptions for free. Upgrade as your operations grow. No hidden agent fees.
+      </p>
+    </div>
+
+    <!-- Pricing Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch max-w-6xl mx-auto">
+      
+      <!-- Tier 1: Developer -->
+      <div class="rounded-2xl border border-zinc-200 bg-white p-8 flex flex-col justify-between shadow-sm relative">
+        <div>
+          <span class="text-xs font-mono font-bold text-zinc-400 uppercase tracking-widest block mb-1">Developer</span>
+          <div class="flex items-baseline gap-1 mb-6">
+            <span class="text-3xl font-extrabold text-zinc-900">$0</span>
+            <span class="text-zinc-400 text-xs font-mono">/ free forever</span>
+          </div>
+          <p class="text-zinc-500 text-xs font-light mb-6">
+            For individual developers debugging side projects and small services.
+          </p>
+          <hr class="border-zinc-100 my-6" />
+          <ul class="space-y-3.5 text-xs text-zinc-600">
+            <li class="flex items-center gap-2.5">
+              <svg class="w-4 h-4 text-brand-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              1 Active Service Agent
+            </li>
+            <li class="flex items-center gap-2.5">
+              <svg class="w-4 h-4 text-brand-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              10 Minutes retention
+            </li>
+            <li class="flex items-center gap-2.5">
+              <svg class="w-4 h-4 text-brand-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              Basic stack unwinding
+            </li>
+            <li class="flex items-center gap-2.5 opacity-40">
+              <svg class="w-4 h-4 text-zinc-300 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+              Advanced local variable redaction
+            </li>
+          </ul>
+        </div>
+        <Button href="/get-demo" variant="outline" class="w-full mt-8 font-semibold">
+          Get Started
+        </Button>
+      </div>
+
+      <!-- Tier 2: Team (Featured) -->
+      <div class="rounded-2xl border-2 border-brand-primary bg-white p-8 flex flex-col justify-between relative shadow-lg shadow-brand-primary/5">
+        <!-- Badge -->
+        <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 text-[10px] font-mono font-bold text-white bg-brand-primary px-3 py-1 rounded-full">
+          RECOMMENDED
+        </span>
+        <div>
+          <span class="text-xs font-mono font-bold text-brand-primary uppercase tracking-widest block mb-1">Team</span>
+          <div class="flex items-baseline gap-1 mb-6">
+            <span class="text-3xl font-extrabold text-zinc-900">$49</span>
+            <span class="text-zinc-400 text-xs font-mono">/ mo</span>
+          </div>
+          <p class="text-zinc-500 text-xs font-light mb-6">
+            For growing engineering teams requiring real-time shared incident inspection.
+          </p>
+          <hr class="border-zinc-100 my-6" />
+          <ul class="space-y-3.5 text-xs text-zinc-600">
+            <li class="flex items-center gap-2.5">
+              <svg class="w-4 h-4 text-brand-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              Up to 10 Active Service Agents
+            </li>
+            <li class="flex items-center gap-2.5">
+              <svg class="w-4 h-4 text-brand-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              7 Days retention
+            </li>
+            <li class="flex items-center gap-2.5">
+              <svg class="w-4 h-4 text-brand-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              Full Local Variable Capture
+            </li>
+            <li class="flex items-center gap-2.5">
+              <svg class="w-4 h-4 text-brand-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              W3C Distributed Tracing
+            </li>
+            <li class="flex items-center gap-2.5">
+              <svg class="w-4 h-4 text-brand-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              Slack & PagerDuty Integration
+            </li>
+          </ul>
+        </div>
+        <Button href="/get-demo" variant="primary" class="w-full mt-8 font-bold">
+          Start Free Trial
+        </Button>
+      </div>
+
+      <!-- Tier 3: Enterprise -->
+      <div class="rounded-2xl border border-zinc-200 bg-white p-8 flex flex-col justify-between shadow-sm relative">
+        <div>
+          <span class="text-xs font-mono font-bold text-zinc-400 uppercase tracking-widest block mb-1">Enterprise</span>
+          <div class="flex items-baseline gap-1 mb-6">
+            <span class="text-3xl font-extrabold text-zinc-900">Custom</span>
+            <span class="text-zinc-400 text-xs font-mono">/ contact us</span>
+          </div>
+          <p class="text-zinc-500 text-xs font-light mb-6">
+            For large scale microservices and organizations needing on-prem or private cloud hosting.
+          </p>
+          <hr class="border-zinc-100 my-6" />
+          <ul class="space-y-3.5 text-xs text-zinc-600">
+            <li class="flex items-center gap-2.5">
+              <svg class="w-4 h-4 text-brand-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              Unlimited Active Agents
+            </li>
+            <li class="flex items-center gap-2.5">
+              <svg class="w-4 h-4 text-brand-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              Custom retention duration
+            </li>
+            <li class="flex items-center gap-2.5">
+              <svg class="w-4 h-4 text-brand-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              On-Prem / Private Cloud Deploy
+            </li>
+            <li class="flex items-center gap-2.5">
+              <svg class="w-4 h-4 text-brand-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              SAML/SSO & Audit Logs
+            </li>
+            <li class="flex items-center gap-2.5">
+              <svg class="w-4 h-4 text-brand-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              Dedicated Support SLA
+            </li>
+          </ul>
+        </div>
+        <Button href="/get-demo" variant="outline" class="w-full mt-8 font-semibold">
+          Request Enterprise Demo
+        </Button>
+      </div>
+
+    </div>
+
+  </div>
+</section>

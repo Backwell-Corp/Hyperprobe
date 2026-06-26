@@ -1,0 +1,115 @@
+---
+// src/components/sections/Navbar.astro
+import Button from '@components/ui/Button.astro';
+---
+
+<header class="sticky top-0 z-50 w-full glass-panel border-b border-zinc-100 bg-white/80 backdrop-blur-md">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 sm:h-20">
+      
+      <!-- Wordmark Logo (Plain text font-serif as requested) -->
+      <a href="/" class="logo focus-visible:outline-none">
+        Hyperprobe
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="hidden md:flex items-center gap-8" aria-label="Main Navigation">
+        <a href="/#product-overview" class="text-sm font-medium text-zinc-600 hover:text-brand-primary transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-primary rounded-none px-2 py-1">
+          How it Works
+        </a>
+        <a href="/#trace-snapshot" class="text-sm font-medium text-zinc-600 hover:text-brand-primary transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-primary rounded-none px-2 py-1">
+          AI Diagnosis
+        </a>
+        <a href="/#faq" class="text-sm font-medium text-zinc-600 hover:text-brand-primary transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-primary rounded-none px-2 py-1">
+          FAQs
+        </a>
+      </nav>
+
+      <!-- Desktop CTA Action (TRY IN STAGING style but routes to demo page) -->
+      <div class="hidden md:flex items-center gap-4">
+        <Button href="/get-demo" class="bg-black text-white hover:bg-zinc-800 text-xs px-5 py-2.5 font-bold font-sans uppercase tracking-wider rounded-none transition-all">
+          Try in Staging
+        </Button>
+      </div>
+
+      <!-- Mobile menu button -->
+      <div class="flex md:hidden">
+        <button 
+          type="button" 
+          id="mobile-menu-toggle"
+          class="inline-flex items-center justify-center p-2 rounded-none text-zinc-500 hover:text-zinc-900 hover:bg-zinc-50 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2 focus:ring-offset-white"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+        >
+          <span class="sr-only">Open main menu</span>
+          <svg class="block h-6 w-6" id="menu-icon-open" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+          <svg class="hidden h-6 w-6" id="menu-icon-close" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Mobile Menu Panel -->
+  <div class="hidden md:hidden border-t border-zinc-100 bg-white/95 backdrop-blur-lg" id="mobile-menu">
+    <div class="px-2 pt-2 pb-4 space-y-1 sm:px-3">
+      <a href="/#product-overview" class="block px-3 py-2.5 rounded-none text-base font-medium text-zinc-600 hover:text-brand-primary hover:bg-zinc-50 transition-colors">
+        How it Works
+      </a>
+      <a href="/#trace-snapshot" class="block px-3 py-2.5 rounded-none text-base font-medium text-zinc-600 hover:text-brand-primary hover:bg-zinc-50 transition-colors">
+        AI Diagnosis
+      </a>
+      <a href="/#faq" class="block px-3 py-2.5 rounded-none text-base font-medium text-zinc-600 hover:text-brand-primary hover:bg-zinc-50 transition-colors">
+        FAQs
+      </a>
+      <hr class="border-zinc-100 my-2" />
+      <div class="px-3 py-2">
+        <Button href="/get-demo" class="w-full text-center bg-black text-white hover:bg-zinc-800 text-xs px-5 py-2.5 font-bold font-sans uppercase tracking-wider rounded-none transition-all">
+          Try in Staging
+        </Button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  function setupNavbar() {
+    const toggle = document.getElementById('mobile-menu-toggle');
+    const menu = document.getElementById('mobile-menu');
+    const openIcon = document.getElementById('menu-icon-open');
+    const closeIcon = document.getElementById('menu-icon-close');
+
+    if (!toggle || !menu || !openIcon || !closeIcon) return;
+
+    toggle.addEventListener('click', () => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      
+      if (expanded) {
+        menu.classList.add('hidden');
+        openIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+      } else {
+        menu.classList.remove('hidden');
+        openIcon.classList.add('hidden');
+        closeIcon.classList.remove('hidden');
+      }
+    });
+
+    const links = menu.querySelectorAll('a');
+    links.forEach(link => {
+      link.addEventListener('click', () => {
+        menu.classList.add('hidden');
+        openIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', setupNavbar);
+</script>

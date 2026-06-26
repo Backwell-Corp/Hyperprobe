@@ -1,0 +1,52 @@
+---
+// src/pages/terms.astro
+export const prerender = true;
+
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/sections/Navbar.astro';
+import Footer from '../components/sections/Footer.astro';
+
+const breadcrumbItems = [
+  { name: 'Home', item: '/' },
+  { name: 'Terms of Service', item: '/terms' }
+];
+---
+
+<Layout 
+  title="Terms of Service | Hyperprobe" 
+  description="Terms of service and usage licensing policy guidelines for Hyperprobe applications."
+  schemaTypes={['Breadcrumb']}
+  breadcrumbItems={breadcrumbItems}
+>
+  <Navbar />
+
+  <main class="flex-grow max-w-3xl mx-auto py-16 md:py-24 px-4 relative z-10">
+    <h1 class="text-3xl sm:text-4xl font-normal text-zinc-900 tracking-tight mb-8 font-serif">
+      Terms of <span class="text-brand-primary italic">Service</span>
+    </h1>
+    <div class="prose text-zinc-600 text-sm font-light space-y-6 leading-relaxed font-sans">
+      <p class="text-zinc-500 font-mono text-xs">Last Updated: June 26, 2026</p>
+      
+      <p>
+        Welcome to Hyperprobe. By accessing our platform or deploying our trace daemon agents, you agree to comply with the terms of service detailed below.
+      </p>
+
+      <h2 class="text-lg font-semibold text-zinc-800 pt-4">1. License Grant</h2>
+      <p>
+        Subject to your compliance with these terms, Hyperprobe grants you a limited, non-exclusive, non-transferable, revocable license to deploy our telemetry daemon container and access our web debugging panel.
+      </p>
+
+      <h2 class="text-lg font-semibold text-zinc-800 pt-4">2. Usage Policy</h2>
+      <p>
+        You must not use the service for any illegal or unauthorized purpose. You agree not to distribute malicious software, bypass our agent throttle limits, or exploit sandboxing security boundaries.
+      </p>
+
+      <h2 class="text-lg font-semibold text-zinc-800 pt-4">3. Disclaimers</h2>
+      <p>
+        The software is provided "as is", without warranty of any kind. Under no circumstances will Hyperprobe be liable for performance overhead, trace faults, or data leakage issues arising from custom instrumentation configuration.
+      </p>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

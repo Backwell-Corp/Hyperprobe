@@ -1,0 +1,53 @@
+---
+// src/pages/privacy.astro
+export const prerender = true;
+
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/sections/Navbar.astro';
+import Footer from '../components/sections/Footer.astro';
+
+const breadcrumbItems = [
+  { name: 'Home', item: '/' },
+  { name: 'Privacy Policy', item: '/privacy' }
+];
+---
+
+<Layout 
+  title="Privacy Policy | Hyperprobe" 
+  description="Privacy Policy and data protection guidelines for Hyperprobe users and service clients."
+  schemaTypes={['Breadcrumb']}
+  breadcrumbItems={breadcrumbItems}
+>
+  <Navbar />
+
+  <main class="flex-grow max-w-3xl mx-auto py-16 md:py-24 px-4 relative z-10">
+    <h1 class="text-3xl sm:text-4xl font-normal text-zinc-900 tracking-tight mb-8 font-serif">
+      Privacy <span class="text-brand-primary italic">Policy</span>
+    </h1>
+    <div class="prose text-zinc-600 text-sm font-light space-y-6 leading-relaxed font-sans">
+      <p class="text-zinc-500 font-mono text-xs">Last Updated: June 26, 2026</p>
+      
+      <p>
+        At Hyperprobe, we build debugger agents designed for engineers. We prioritize data protection, security, and privacy above all else. This policy outlines how we collect, process, and protect your information.
+      </p>
+
+      <h2 class="text-lg font-semibold text-zinc-800 pt-4">1. Local Redaction & Scrubbing</h2>
+      <p>
+        Our tracing daemon performs Abstract Syntax Tree (AST) parsing and regex filtering of variables on-agent, meaning that all sensitive keys, payment credentials, and personally identifiable information (PII) are redacted locally before any data is stored in our database.
+      </p>
+
+      <h2 class="text-lg font-semibold text-zinc-800 pt-4">2. Information We Collect</h2>
+      <p>
+        We only collect information necessary to provide the service, including lead generation contact details (name, email, organization) when requesting a demo, and application diagnostics schema when executing stack traces.
+      </p>
+
+      <h2 class="text-lg font-semibold text-zinc-800 pt-4">3. Contact Us</h2>
+      <p>
+        If you have any questions or data removal requests regarding our privacy standards, contact us at 
+        <a href="mailto:privacy@hyperprobe.io" class="text-brand-primary hover:underline font-mono">privacy@hyperprobe.io</a>.
+      </p>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

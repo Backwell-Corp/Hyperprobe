@@ -1,0 +1,60 @@
+---
+// src/components/sections/Testimonials.astro
+
+const testimonials = [
+  {
+    rating: "★★★★★",
+    quote: "Sync issues used to take us days to reproduce locally. Hyperprobe caught the silent data mismatch in production on the first attempt.",
+    author: "Aishwarya Maurya",
+    role: "Tech Lead",
+    company: "CheQ Digital"
+  },
+  {
+    rating: "★★★★★",
+    quote: "During peak traffic, our listing service was black-boxing failures. Hyperprobe let us inspect the live memory state during the spike. We fixed the race condition in the same hour.",
+    author: "Bhagwan Bansal",
+    role: "SDE",
+    company: "Housing.com"
+  }
+];
+---
+
+<section id="testimonials" class="relative z-10 bg-white">
+  <div class="max-w-[1380px] mx-auto px-6 py-16 md:px-16 md:py-[100px]">
+    
+    <!-- Section Heading -->
+    <div class="text-left max-w-5xl mb-16">
+      <span class="eyebrow block mb-3">— CLIENT STORIES</span>
+      <h2 class="section-heading mb-4">
+        See what our <span class="accent">clients are saying.</span>
+      </h2>
+      <p class="body-text">
+        Learn how our solutions have empowered our clients to debug in minutes.
+      </p>
+    </div>
+
+    <!-- Testimonials Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+      {testimonials.map((test) => (
+        <div class="rounded-xl border border-zinc-200 bg-white p-8 shadow-sm flex flex-col justify-between hover:border-zinc-300 transition-colors">
+          <div>
+            <div class="text-[#F59E0B] text-sm tracking-widest mb-4 select-none">
+              {test.rating}
+            </div>
+            <p class="text-zinc-800 text-[15px] sm:text-[17px] font-serif leading-relaxed mb-6">
+              "{test.quote}"
+            </p>
+          </div>
+          <div class="pt-2">
+            <h4 class="text-sm font-bold text-zinc-900 font-sans">{test.author}</h4>
+            <p class="text-xs text-zinc-500 mt-1 font-sans">
+              {test.role} @ {test.company}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+

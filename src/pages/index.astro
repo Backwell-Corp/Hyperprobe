@@ -1,0 +1,70 @@
+---
+// src/pages/index.astro
+export const prerender = true;
+
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/sections/Navbar.astro';
+import Hero from '../components/sections/Hero.astro';
+import TraceSnapshot from '../components/sections/TraceSnapshot.astro';
+import Problem from '../components/sections/Problem.astro';
+import ProductOverview from '../components/sections/ProductOverview.astro';
+import WhyHyperprobe from '../components/sections/WhyHyperprobe.astro';
+import SecurityCompliance from '../components/sections/SecurityCompliance.astro';
+import Testimonials from '../components/sections/Testimonials.astro';
+import FAQ from '../components/sections/FAQ.astro';
+import CTASection from '../components/sections/CTASection.astro';
+import Footer from '../components/sections/Footer.astro';
+
+const faqItems = [
+  {
+    question: "We already have Datadog. Why do we need this?",
+    answer: "Datadog tells you something broke. Hyperprobe tells you why. There's a gap between those two things — it's where your engineers spend 3–4 hours per incident. Hyperprobe fills that gap without replacing Datadog. The sale typically comes out of your existing observability budget."
+  },
+  {
+    question: "We do extensive logging. Isn't this redundant?",
+    answer: "Logs capture what you anticipated. Production bugs happen in the gaps — the variable state you didn't think to log, the DB return you assumed would never be null, the pool condition you didn't know to watch. Hyperprobe captures the exact state at the moment of failure, regardless of what you logged. It's not a replacement for logging. It's what you reach for when your logs don't have the answer."
+  },
+  {
+    question: "Is there a security risk with an in-process agent?",
+    answer: "The agent is read-only — it cannot execute code or write to memory. Every probe requires explicit approval. Breakpoints auto-deactivate at 0.5% CPU impact and expire after 30 minutes by default. Everything runs inside your VPC. PII is redacted at agent level before anything leaves your cluster."
+  },
+  {
+    question: "What does setup actually look like — and how long does it take?",
+    answer: "Add one dependency to your pom.xml, deploy to production once, install the VS Code plugin. That's it. We've seen engineers place their first live breakpoint within 20 minutes of starting. We onboard every early access customer personally — if anything takes longer than 30 minutes, that's on us."
+  },
+  {
+    question: "Does this work without the AI layer?",
+    answer: "Yes. The core product is live breakpoints — place one, capture the snapshot, read the variable state yourself. The AI layer reads the snapshot and explains root cause in plain English, but it's additive. Engineers who know their codebase well often don't need it. Engineers on unfamiliar services find it cuts investigation time in half again."
+  },
+  {
+    question: "What languages and tools are supported?",
+    answer: "Java, Scala, Kotlin, Node.js, and Python today. VS Code plugin available now. IntelliJ on the roadmap. If your stack runs on JVM or Node — you're covered from day one."
+  }
+];
+---
+
+<Layout 
+  title="Hyperprobe | Debug Production in Minutes, Not Hours" 
+  description="Find bug, collect state, fix. Hyperprobe gives you access to a debugger in your production environment. No restarts or log lines required."
+  schemaTypes={['Organization', 'SoftwareApplication', 'FAQ']}
+  faqItems={faqItems}
+>
+  <!-- Global Navigation Header -->
+  <Navbar />
+
+  <!-- Page Sections mapped exactly as reference -->
+  <main class="flex-grow">
+    <Hero />
+    <TraceSnapshot />
+    <Problem />
+    <ProductOverview />
+    <WhyHyperprobe />
+    <SecurityCompliance />
+    <Testimonials />
+    <FAQ />
+    <CTASection />
+  </main>
+
+  <!-- Global Footer -->
+  <Footer />
+</Layout>

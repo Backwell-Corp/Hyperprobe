@@ -1,0 +1,66 @@
+---
+// src/components/ui/Input.astro
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends HTMLAttributes<'input'> {
+  label: string;
+  id: string;
+  error?: string;
+  helperText?: string;
+}
+
+const {
+  label,
+  id,
+  error,
+  helperText,
+  class: className = '',
+  required,
+  type = 'text',
+  ...rest
+} = Astro.props;
+---
+
+<div class="flex flex-col gap-2 w-full">
+  <div class="flex justify-between items-baseline">
+    <label 
+      for={id} 
+      class="text-xs font-semibold uppercase tracking-wider text-zinc-500"
+    >
+      {label} {required && <span class="text-brand-primary" aria-hidden="true">*</span>}
+    </label>
+    {error && (
+      <span class="text-xs font-medium text-accent-rose" id={`${id}-error`} role="alert">
+        {error}
+      </span>
+    )}
+  </div>
+  
+  <input
+    id={id}
+    type={type}
+    required={required}
+    aria-invalid={error ? 'true' : 'false'}
+    aria-describedby={
+      error 
+        ? `${id}-error` 
+        : helperText 
+          ? `${id}-helper` 
+          : undefined
+    }
+    class:list={[
+      "px-4 py-3 bg-white border rounded-none text-sm text-zinc-800 placeholder-zinc-400 transition-all duration-200 outline-none",
+      error 
+        ? "border-accent-rose/60 focus:border-accent-rose focus:ring-1 focus:ring-accent-rose" 
+        : "border-zinc-200 focus:border-brand-primary focus:ring-1 focus:ring-brand-primary",
+      className
+    ]}
+    {...rest}
+  />
+  
+  {helperText && !error && (
+    <p class="text-xs text-zinc-400" id={`${id}-helper`}>
+      {helperText}
+    </p>
+  )}
+</div>

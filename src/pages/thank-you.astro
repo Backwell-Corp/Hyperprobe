@@ -1,0 +1,61 @@
+---
+// src/pages/thank-you.astro
+export const prerender = true;
+
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/sections/Navbar.astro';
+import Footer from '../components/sections/Footer.astro';
+import Button from '@components/ui/Button.astro';
+
+const breadcrumbItems = [
+  { name: 'Home', item: '/' },
+  { name: 'Thank You', item: '/thank-you' }
+];
+---
+
+<Layout 
+  title="Demo Request Confirmed | Hyperprobe" 
+  description="Thank you for requesting a Hyperprobe product demo. Our engineering team has received your application and will follow up shortly."
+  schemaTypes={['Breadcrumb']}
+  breadcrumbItems={breadcrumbItems}
+>
+  <Navbar />
+
+  <main class="flex-grow flex items-center justify-center py-20 md:py-32 relative z-10 px-4">
+    <div class="max-w-md w-full text-center">
+      
+      <!-- Success Icon -->
+      <div class="relative w-16 h-16 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center mx-auto mb-8 animate-pulse-slow">
+        <!-- Inside glow dot -->
+        <div class="absolute inset-2 rounded-full bg-emerald-100/50 blur-md"></div>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-emerald-700 relative z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+        </svg>
+      </div>
+
+      <!-- Heading -->
+      <h1 class="text-3xl sm:text-4xl font-normal text-zinc-900 tracking-tight mb-4 font-serif">
+        Thanks! Your demo request <br />
+        <span class="text-brand-primary italic">has been received.</span>
+      </h1>
+
+      <!-- Description -->
+      <p class="text-zinc-500 text-sm font-light leading-relaxed mb-10 max-w-sm mx-auto">
+        We've received your request and our team will contact you shortly. In the meantime, feel free to continue exploring Hyperprobe.
+      </p>
+
+      <!-- Return Button -->
+      <div class="flex flex-col gap-3">
+        <Button href="/" variant="primary" size="lg" class="w-full font-bold">
+          Return to Homepage
+        </Button>
+        <Button href="/#features" variant="outline" size="lg" class="w-full text-zinc-500">
+          Explore Features
+        </Button>
+      </div>
+
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
