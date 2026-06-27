@@ -9,6 +9,7 @@ import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build/config
 export default defineConfig({
+  output: 'server',
   site: process.env.PUBLIC_SITE_URL || 'https://hyperprobe.io',
   vite: {
     plugins: [tailwindcss()]
