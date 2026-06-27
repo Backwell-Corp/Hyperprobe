@@ -1,19 +1,17 @@
-// src/pages/api/submit-demo.ts
-// This route must run on server-side dynamically.
-export const prerender = false;
-
-import type { APIRoute } from 'astro';
-import { getSupabaseClient } from '../../lib/supabase/client';
-import { sendDemoLeadEmails } from '../../lib/resend/client';
+import { getSupabaseClient } from '../../src/lib/supabase/client';
+import { sendDemoLeadEmails } from '../../src/lib/resend/client';
 
 const ALLOWED_LANGUAGES = [
   'TypeScript', 'Python', 'Java', 'Node.js', 'Kotlin', 'PHP', 
   'Scala', 'Go', 'Rust', 'C#', 'C++', 'Others'
 ];
 
-export const POST: APIRoute = async (context) => {
+export const onRequestPost = async (context: {
+  request: Request;
+  env: Record<string, any>;
+}) => {
   try {
-    const payload = await context.request.json();
+    const payload: any = await context.request.json();
     const { name, email, company, phone_number, backend_language, source_page } = payload;
 
     // 1. Server-side validations
@@ -63,8 +61,17 @@ export const POST: APIRoute = async (context) => {
       );
     }
 
+    // Adapt context for existing utilities
+    const adaptedContext = {
+      locals: {
+        runtime: {
+          env: context.env
+        }
+      }
+    };
+
     // 2. Save data to Supabase database
-    const supabase = getSupabaseClient(context);
+    const supabase = getSupabaseClient(adaptedContext);
     const { error: dbError } = await supabase
       .from('website_leads')
       .insert({
@@ -96,24 +103,19 @@ export const POST: APIRoute = async (context) => {
         phone_number: phone_number ? phone_number.trim() : undefined,
         backend_language,
         source_page: source_page.trim()
-      }, context);
+      }, adaptedContext);
     } catch (emailErr) {
-      // Log email failure but don't crash lead submission if db storage succeeded
-      console.error('Resend Delivery Error:', emailErr);
+      console.error('Email sending failed:', emailErr);
     }
 
     return new Response(
-      JSON.stringify({ success: true, message: 'Demo request received successfully.' }),
+      JSON.stringify({ success: true }),
       { status: 200, headers: { 'Content-Type': 'application/json' } }
     );
-
-  } catch (err: any) {
-    console.error('API submit-demo exception:', err);
+  } catch (error: any) {
+    console.error('Submit Demo Error:', error);
     return new Response(
-      JSON.stringify({ 
-        success: false, 
-        message: 'Internal server error processing demo request.' 
-      }),
+      JSON.stringify({ success: false, message: 'An internal server error occurred.' }),
       { status: 500, headers: { 'Content-Type': 'application/json' } }
     );
   }
