@@ -31,6 +31,17 @@ export const onRequestPost = async (context: {
         errors.email = 'Invalid email format';
       } else if (email.length > 255) {
         errors.email = 'Email must be under 255 characters';
+      } else {
+        const personalDomains = [
+          'gmail.com', 'yahoo.com', 'yahoo.co.in', 'outlook.com', 'hotmail.com',
+          'hotmail.co.uk', 'icloud.com', 'aol.com', 'zoho.com', 'mail.com',
+          'protonmail.com', 'proton.me', 'gmx.com', 'yandex.com', 'mail.ru',
+          'live.com', 'msn.com'
+        ];
+        const domain = email.trim().toLowerCase().split('@')[1];
+        if (personalDomains.includes(domain)) {
+          errors.email = 'Personal email addresses are not accepted. Please use your work email.';
+        }
       }
     }
 

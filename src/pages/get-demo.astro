@@ -140,16 +140,39 @@ const breadcrumbItems = [
                 autocomplete="organization"
               />
               
-              <!-- Phone Number Input -->
-              <Input 
-                label="Phone Number" 
-                id="phone_number" 
-                name="phone_number" 
-                type="tel" 
-                placeholder="+1 (555) 000-0000" 
-                autocomplete="tel"
-                helperText="Support international format"
-              />
+              <!-- Phone Number Input with Country Code -->
+              <div class="flex flex-col gap-2 w-full">
+                <label for="phone_number" class="text-xs font-semibold uppercase tracking-wider text-zinc-500">
+                  Phone Number
+                </label>
+                <div class="flex gap-2">
+                  <select 
+                    id="country_code" 
+                    name="country_code" 
+                    class="px-3 py-3 bg-white border border-zinc-200 text-sm text-zinc-800 outline-none focus:border-brand-primary transition-all duration-200 w-[95px] shrink-0"
+                  >
+                    <option value="+1">+1 (US)</option>
+                    <option value="+91" selected>+91 (IN)</option>
+                    <option value="+44">+44 (UK)</option>
+                    <option value="+61">+61 (AU)</option>
+                    <option value="+49">+49 (DE)</option>
+                    <option value="+33">+33 (FR)</option>
+                    <option value="+81">+81 (JP)</option>
+                    <option value="+65">+65 (SG)</option>
+                    <option value="+31">+31 (NL)</option>
+                    <option value="+39">+39 (IT)</option>
+                  </select>
+                  <input 
+                    id="phone_number" 
+                    name="phone_number" 
+                    type="tel" 
+                    placeholder="98765 43210" 
+                    autocomplete="tel-national"
+                    class="flex-grow px-4 py-3 bg-white border border-zinc-200 text-sm text-zinc-800 placeholder-zinc-400 transition-all duration-200 outline-none focus:border-brand-primary w-full"
+                  />
+                </div>
+                <p class="text-xs text-zinc-400" id="phone-helper">Support international format</p>
+              </div>
             </div>
 
             <!-- Backend Language Dropdown Select -->
@@ -266,7 +289,9 @@ const breadcrumbItems = [
       const name = formData.get('name') as string;
       const email = formData.get('email') as string;
       const company = formData.get('company') as string;
-      const phone_number = formData.get('phone_number') as string;
+      const country_code = formData.get('country_code') as string;
+      const phone_number_val = formData.get('phone_number') as string;
+      const phone_number = phone_number_val ? `${country_code} ${phone_number_val.trim()}` : '';
       const backend_language = formData.get('backend_language') as string;
       const source_page = formData.get('source_page') as string;
 
@@ -286,6 +311,18 @@ const breadcrumbItems = [
         if (!emailRegex.test(email)) {
           setInputError('email', 'Please enter a valid work email');
           hasError = true;
+        } else {
+          const personalDomains = [
+            'gmail.com', 'yahoo.com', 'yahoo.co.in', 'outlook.com', 'hotmail.com',
+            'hotmail.co.uk', 'icloud.com', 'aol.com', 'zoho.com', 'mail.com',
+            'protonmail.com', 'proton.me', 'gmx.com', 'yandex.com', 'mail.ru',
+            'live.com', 'msn.com'
+          ];
+          const domain = email.trim().toLowerCase().split('@')[1];
+          if (personalDomains.includes(domain)) {
+            setInputError('email', 'Please enter a work email address (personal domains not accepted)');
+            hasError = true;
+          }
         }
       }
 
