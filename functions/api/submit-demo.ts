@@ -99,7 +99,7 @@ export const onRequestPost = async (context: {
       return new Response(
         JSON.stringify({ 
           success: false, 
-          message: 'Database storage operation failed. Please try again later.' 
+          message: `Database storage operation failed: ${dbError.message} (${dbError.details || dbError.hint || ''})` 
         }),
         { status: 500, headers: { 'Content-Type': 'application/json' } }
       );
