@@ -39,24 +39,27 @@ export async function sendDemoLeadEmails(
         <meta charset="utf-8">
         <title>New Demo Request</title>
         <style>
-          body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; color: #1f2937; line-height: 1.5; padding: 20px; }
-          .container { max-width: 600px; margin: 0 auto; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; }
+          body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; color: #18181b; line-height: 1.5; padding: 20px; background-color: #fcfcfc; }
+          .container { max-width: 600px; margin: 0 auto; border: 1px solid #e4e4e7; border-radius: 12px; overflow: hidden; background: #ffffff; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
+          .accent-bar { height: 4px; background-color: #C0392B; }
           .header { background: #09090b; padding: 24px; color: #ffffff; }
-          .header h1 { margin: 0; font-size: 20px; font-weight: 600; color: #10b981; }
-          .content { padding: 24px; }
-          table { width: 100%; border-collapse: collapse; margin-top: 16px; }
-          th { text-align: left; padding: 8px 12px; background: #f3f4f6; font-size: 14px; font-weight: 600; border-bottom: 1px solid #e5e7eb; }
-          td { padding: 12px; font-size: 14px; border-bottom: 1px solid #e5e7eb; }
-          .footer { background: #f9fafb; padding: 16px; text-align: center; font-size: 12px; color: #6b7280; }
+          .header h1 { margin: 0; font-size: 18px; font-weight: 600; color: #ffffff; font-family: Georgia, serif; }
+          .header span { color: #C0392B; }
+          .content { padding: 32px 24px; }
+          table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+          th { text-align: left; padding: 10px 12px; background: #f4f4f5; font-size: 12px; font-weight: 700; border-bottom: 1px solid #e4e4e7; text-transform: uppercase; color: #71717a; }
+          td { padding: 12px; font-size: 14px; border-bottom: 1px solid #e4e4e7; color: #27272a; }
+          .footer { background: #fafafa; padding: 20px; text-align: center; font-size: 11px; color: #71717a; border-top: 1px solid #e4e4e7; }
         </style>
       </head>
       <body>
         <div class="container">
+          <div class="accent-bar"></div>
           <div class="header">
-            <h1>Hyperprobe Alert: New Demo Request</h1>
+            <h1>Hyper<span>probe</span> &middot; Lead Alert</h1>
           </div>
           <div class="content">
-            <p>A new lead has requested a product demo of Hyperprobe.</p>
+            <p style="margin-top: 0; font-size: 15px;">A new developer has submitted a demo request application.</p>
             <table>
               <tr>
                 <th>Field</th>
@@ -68,7 +71,7 @@ export async function sendDemoLeadEmails(
               </tr>
               <tr>
                 <td><strong>Email</strong></td>
-                <td><a href="mailto:${lead.email}">${lead.email}</a></td>
+                <td><a href="mailto:${lead.email}" style="color: #C0392B; text-decoration: none;">${lead.email}</a></td>
               </tr>
               <tr>
                 <td><strong>Company</strong></td>
@@ -80,11 +83,11 @@ export async function sendDemoLeadEmails(
               </tr>
               <tr>
                 <td><strong>Backend Language</strong></td>
-                <td><code>${lead.backend_language}</code></td>
+                <td><code style="background: #f4f4f5; padding: 2px 6px; border-radius: 4px; font-size: 13px;">${lead.backend_language}</code></td>
               </tr>
               <tr>
                 <td><strong>Source Page</strong></td>
-                <td><code>${lead.source_page}</code></td>
+                <td><code style="background: #f4f4f5; padding: 2px 6px; border-radius: 4px; font-size: 13px;">${lead.source_page}</code></td>
               </tr>
               <tr>
                 <td><strong>Timestamp</strong></td>
@@ -93,7 +96,7 @@ export async function sendDemoLeadEmails(
             </table>
           </div>
           <div class="footer">
-            &copy; 2026 Hyperprobe. Real-time telemetry & production debugging.
+            &copy; 2026 Hyperprobe. Built for production telemetry and debugging.
           </div>
         </div>
       </body>
@@ -108,54 +111,64 @@ export async function sendDemoLeadEmails(
         <meta charset="utf-8">
         <title>Demo Request Received</title>
         <style>
-          body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; color: #f4f4f5; background: #09090b; line-height: 1.6; margin: 0; padding: 20px; }
-          .container { max-width: 600px; margin: 40px auto; background: #18181b; border: 1px solid #27272a; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
-          .header { background: #09090b; padding: 32px 24px; text-align: center; border-bottom: 1px solid #27272a; }
-          .header h1 { margin: 0; font-size: 24px; font-weight: 700; letter-spacing: -0.05em; color: #ffffff; }
-          .header span { color: #10b981; }
-          .content { padding: 32px 24px; }
-          .content p { font-size: 15px; color: #a1a1aa; }
-          .accent-box { background: #09090b; border-left: 4px solid #10b981; padding: 16px; margin: 24px 0; border-radius: 0 4px 4px 0; }
-          .accent-box h3 { margin: 0 0 8px 0; font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em; color: #ffffff; }
-          .accent-box p { margin: 0; font-size: 14px; color: #a1a1aa; }
-          .footer { background: #09090b; padding: 24px; text-align: center; font-size: 12px; color: #71717a; border-top: 1px solid #27272a; }
+          body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; color: #27272a; background-color: #fafafa; line-height: 1.6; margin: 0; padding: 20px; }
+          .container { max-width: 580px; margin: 30px auto; background: #ffffff; border: 1px solid #e4e4e7; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+          .accent-bar { height: 4px; background-color: #C0392B; }
+          .header { background: #09090b; padding: 28px 24px; text-align: center; }
+          .header h1 { margin: 0; font-size: 22px; font-weight: 700; color: #ffffff; font-family: Georgia, serif; letter-spacing: -0.02em; }
+          .header span { color: #C0392B; }
+          .content { padding: 36px 28px; }
+          .content h2 { color: #18181b; font-family: Georgia, serif; font-size: 20px; font-weight: 500; margin-top: 0; margin-bottom: 16px; }
+          .content p { font-size: 14px; color: #52525b; margin-bottom: 20px; }
+          .cta-container { text-align: center; margin: 30px 0; }
+          .cta-btn { display: inline-block; padding: 12px 28px; background-color: #C0392B; color: #ffffff !important; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px; transition: background-color 0.2s; box-shadow: 0 2px 4px rgba(192, 57, 43, 0.15); }
+          .details-box { background: #fafafa; border-left: 3px solid #C0392B; padding: 16px; margin: 24px 0; border-radius: 0 6px 6px 0; }
+          .details-box h3 { margin: 0 0 6px 0; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: #71717a; font-weight: 700; }
+          .details-box p { margin: 0; font-size: 13px; color: #27272a; font-weight: 500; }
+          .footer { background: #fafafa; padding: 20px; text-align: center; font-size: 11px; color: #71717a; border-top: 1px solid #e4e4e7; }
         </style>
       </head>
       <body>
         <div class="container">
+          <div class="accent-bar"></div>
           <div class="header">
             <h1>Hyper<span>probe</span></h1>
           </div>
           <div class="content">
-            <h2 style="color: #ffffff; font-size: 20px; margin-top: 0;">Thanks for your interest, ${lead.name}!</h2>
-            <p>We've successfully received your request for a Hyperprobe product demo.</p>
-            <p>Our engineering-focused team will review your application and reach out shortly to schedule a live walk-through tailored to your stack.</p>
+            <h2>Thanks for your interest, ${lead.name}!</h2>
+            <p>We have successfully received your demo request application. Our engineering team is currently reviewing it to customize your walk-through experience.</p>
             
-            <div class="accent-box">
+            <div class="details-box">
               <h3>Configuration Confirmed</h3>
-              <p>Primary focus: <strong>${lead.backend_language} debugging in production</strong></p>
+              <p>Primary focus: <strong>${lead.backend_language} production telemetry</strong></p>
             </div>
 
-            <p style="margin-bottom: 0;">In the meantime, feel free to read through our documentation or think about the trickiest production issue currently affecting your microservices.</p>
+            <p>To fast-track your request and immediately schedule a live 1-1 walkthrough tailored to your stack, please use the button below to book a time slot:</p>
+            
+            <div class="cta-container">
+              <a href="https://calendly.com/shailendra-gco-hypertest/shailendra-1-1" class="cta-btn" target="_blank">Book a 1-1 Walkthrough</a>
+            </div>
+
+            <p style="margin-bottom: 0; font-size: 13px; color: #71717a;">If you have any specific requirements or environment constraints, you can reply directly to this email.</p>
           </div>
           <div class="footer">
-            &copy; 2026 Hyperprobe. Built for engineers who debug in production.
+            &copy; 2026 Hyperprobe. Built for production systems debugging.
           </div>
         </div>
       </body>
     </html>
   `;
 
-  // Perform parallel email delivery
+  // Perform parallel email delivery using mail.hyperprobe.co sender domain
   const [adminResult, customerResult] = await Promise.all([
     resend.emails.send({
-      from: 'Hyperprobe Alerts <alerts@updates.hyperprobe.io>',
+      from: 'Hyperprobe Alerts <alerts@mail.hyperprobe.co>',
       to: adminEmail,
       subject: `[Lead Alert] Demo Requested by ${lead.name} (${lead.company || 'No Company'})`,
       html: adminEmailBody,
     }),
     resend.emails.send({
-      from: 'Hyperprobe <team@updates.hyperprobe.io>',
+      from: 'Hyperprobe <team@mail.hyperprobe.co>',
       to: lead.email,
       subject: 'Your Hyperprobe Demo Request',
       html: customerEmailBody,
