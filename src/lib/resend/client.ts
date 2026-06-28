@@ -168,7 +168,7 @@ export async function sendDemoLeadEmails(
       html: adminEmailBody,
     }),
     resend.emails.send({
-      from: 'Hyperprobe <team@mail.hyperprobe.co>',
+      from: 'Hyperprobe <noreply@mail.hyperprobe.co>',
       to: lead.email,
       subject: 'Your Hyperprobe Demo Request',
       html: customerEmailBody,
