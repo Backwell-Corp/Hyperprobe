@@ -5,24 +5,31 @@ import type { APIContext } from 'astro';
  * and production (Cloudflare Pages workers context).
  */
 export function getEnv(key: string, context?: APIContext | { locals: { runtime?: { env?: Record<string, any> } } }): string {
-  // 1. Try to read from Cloudflare Pages runtime environment bindings if context is available
-  if (context && 'locals' in context) {
-    const cfEnv = (context.locals as any).runtime?.env;
-    if (cfEnv && cfEnv[key]) {
-      return String(cfEnv[key]);
+  const getRawEnv = (k: string): string => {
+    if (context && 'locals' in context) {
+      const cfEnv = (context.locals as any).runtime?.env;
+      if (cfEnv && cfEnv[k]) {
+        return String(cfEnv[k]);
+      }
     }
-  }
+    if (typeof process !== 'undefined' && process.env && process.env[k]) {
+      return process.env[k] as string;
+    }
+    const metaEnv = import.meta.env;
+    if (metaEnv && metaEnv[k]) {
+      return String(metaEnv[k]);
+    }
+    return '';
+  };
 
-  // 2. Try process.env (Node.js development server fallback)
-  if (typeof process !== 'undefined' && process.env && process.env[key]) {
-    return process.env[key] as string;
-  }
+  const primaryValue = getRawEnv(key);
+  if (primaryValue) return primaryValue;
 
-  // 3. Try import.meta.env (Vite build-time/statically-replaced variable fallback)
-  const metaEnv = import.meta.env;
-  if (metaEnv && metaEnv[key]) {
-    return String(metaEnv[key]);
-  }
+  const publicValue = getRawEnv(`PUBLIC_${key}`);
+  if (publicValue) return publicValue;
+
+  const nextPublicValue = getRawEnv(`NEXT_PUBLIC_${key}`);
+  if (nextPublicValue) return nextPublicValue;
 
   return '';
 }
