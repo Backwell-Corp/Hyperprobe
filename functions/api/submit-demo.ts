@@ -126,7 +126,10 @@ export const onRequestPost = async (context: {
   } catch (error: any) {
     console.error('Submit Demo Error:', error);
     return new Response(
-      JSON.stringify({ success: false, message: 'An internal server error occurred.' }),
+      JSON.stringify({ 
+        success: false, 
+        message: error instanceof Error ? error.message : 'An internal server error occurred.' 
+      }),
       { status: 500, headers: { 'Content-Type': 'application/json' } }
     );
   }
