@@ -16,18 +16,25 @@ import Button from '@components/ui/Button.astro';
         
         <h2 class="section-heading text-center mx-auto">
           Your next production incident is coming.<br class="hidden sm:inline" />
-          Will your team have <span class="accent">Hyperprobe ready?</span>
+          Will your team have <span class="accent">9 minutes or 4 hours?</span>
         </h2>
         
-        <p class="body-text text-center mx-auto">
-          Set up takes 5 minutes. No code changes required.
-        </p>
+        <div class="space-y-3">
+          <p class="body-text text-center mx-auto max-w-2xl">
+            Drop HyperProbe into your staging environment in 10 minutes. Let your coding agent solve a real bug today.
+          </p>
+          <p class="text-zinc-500 italic text-xs sm:text-sm font-light text-center">
+            No change-board approval. No production risk. No commitment.
+          </p>
+        </div>
 
         <div class="pt-4 flex flex-col items-center justify-center gap-4">
           <Button href="/get-demo" variant="primary" size="lg" class="w-full sm:w-auto font-bold px-8 font-sans">
-            Request a Demo
+            TRY IN STAGING &rarr;
           </Button>
-          <p class="trust-line mt-2">Zero code changes. PII redacted. Under 1% CPU overhead.</p>
+          <p class="trust-line mt-3 text-zinc-500 font-sans text-xs select-none">
+            Works with Cursor, Claude Code, Codex &nbsp;&middot;&nbsp; Node.js · Java · Python &nbsp;&middot;&nbsp; Early Access &mdash; Free to Start
+          </p>
         </div>
 
       </div>
