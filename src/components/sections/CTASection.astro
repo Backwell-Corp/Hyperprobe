@@ -12,15 +12,15 @@ import Button from '@components/ui/Button.astro';
       <!-- Subtle internal glow elements -->
       <div class="absolute -top-1/2 -left-1/2 w-full h-full rounded-none bg-brand-primary/[0.01] blur-[120px] pointer-events-none"></div>
       
-      <div class="relative z-10 max-w-3xl mx-auto space-y-6">
+      <div class="relative z-10 max-w-3xl mx-auto space-y-10">
         
-        <h2 class="section-heading text-center mx-auto">
+        <h2 class="section-heading text-center mx-auto text-3xl sm:text-4xl md:text-5xl! leading-[1.2]! tracking-tight space-y-3">
           <span class="block">Your next production bug is coming.</span>
-          <span class="block">Does your team have</span>
+          <span class="block font-sans text-lg sm:text-xl md:text-2xl font-light text-zinc-500 tracking-normal uppercase my-2">— Does your team have —</span>
           <span class="block accent">9 minutes or 4 hours?</span>
         </h2>
         
-        <div class="space-y-3">
+        <div class="space-y-4">
           <p class="body-text text-center mx-auto max-w-2xl">
             Drop HyperProbe into your staging environment in 10 minutes. Let your coding agent solve a real bug today.
           </p>
@@ -29,7 +29,7 @@ import Button from '@components/ui/Button.astro';
           </p>
         </div>
 
-        <div class="pt-4 flex flex-col items-center justify-center gap-4">
+        <div class="pt-6 flex flex-col items-center justify-center gap-4">
           <Button href="/get-demo" variant="primary" size="lg" class="w-full sm:w-auto font-bold px-8 font-sans">
             TRY IN STAGING &rarr;
           </Button>
