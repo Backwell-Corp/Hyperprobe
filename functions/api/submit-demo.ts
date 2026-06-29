@@ -106,8 +106,9 @@ export const onRequestPost = async (context: {
     }
 
     // 3. Send Notification & Confirmation Emails using Resend
+    let emailStatus = null;
     try {
-      await sendDemoLeadEmails({
+      emailStatus = await sendDemoLeadEmails({
         name: name.trim(),
         email: email.trim().toLowerCase(),
         company: company ? company.trim() : undefined,
@@ -115,12 +116,16 @@ export const onRequestPost = async (context: {
         backend_language,
         source_page: source_page.trim()
       }, adaptedContext);
+      console.log('Resend email delivery status:', emailStatus);
     } catch (emailErr) {
       console.error('Email sending failed:', emailErr);
     }
 
     return new Response(
-      JSON.stringify({ success: true }),
+      JSON.stringify({ 
+        success: true,
+        emailStatus
+      }),
       { status: 200, headers: { 'Content-Type': 'application/json' } }
     );
   } catch (error: any) {
