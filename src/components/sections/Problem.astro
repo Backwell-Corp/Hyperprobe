@@ -17,31 +17,143 @@
       </p>
     </div>
 
-    <!-- Stats Cards Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+    <!-- Side-by-Side Visual Panel -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch max-w-6xl mx-auto">
       
-      <!-- Card 1 -->
-      <div class="rounded-none border border-red-100/80 bg-white p-8 shadow-sm flex flex-col justify-between min-h-[180px]">
-        <h3 class="text-4xl sm:text-5xl font-black text-brand-primary tracking-tight mb-4">3-4h</h3>
-        <p class="text-zinc-500 text-xs sm:text-sm font-light leading-relaxed">
-          Average time spent searching through scattered log lines to manually reconstruct application state.
-        </p>
+      <!-- PagerDuty Alert Card (Left 5 cols) -->
+      <div class="lg:col-span-5 rounded-[20px] border border-zinc-200 bg-white overflow-hidden shadow-md flex flex-col justify-between">
+        
+        <!-- PagerDuty Green Header -->
+        <div class="bg-[#22c55e] px-5 py-4 flex items-center justify-between">
+          <span class="text-white font-sans font-bold text-base tracking-tight">PagerDuty</span>
+          <span class="bg-[#b91c1c] text-white text-[10px] font-bold px-2 py-0.5 rounded flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+            TRIGGERED
+          </span>
+        </div>
+
+        <!-- Alert Content Body -->
+        <div class="p-6 sm:p-8 flex-grow flex flex-col justify-between">
+          <div>
+            <h3 class="text-xl sm:text-2xl font-bold text-zinc-950 font-sans tracking-tight mb-1.5 leading-snug">
+              High Error Rate — payment-service
+            </h3>
+            <p class="text-zinc-400 font-sans text-xs mb-8">
+              Today at 23:04 IST &middot; Assigned to on-call
+            </p>
+
+            <!-- Table Info List -->
+            <div class="divide-y divide-zinc-100 border-t border-b border-zinc-100 font-sans text-xs sm:text-sm">
+              <div class="py-3 flex justify-between items-center">
+                <span class="text-zinc-400 uppercase tracking-wider font-semibold text-[10px]">SERVICE</span>
+                <span class="text-zinc-800 font-bold">payment-service</span>
+              </div>
+              <div class="py-3 flex justify-between items-center">
+                <span class="text-zinc-400 uppercase tracking-wider font-semibold text-[10px]">ERROR RATE</span>
+                <span class="text-brand-primary font-bold flex items-center gap-1">&uarr; 12.4%</span>
+              </div>
+              <div class="py-3 flex justify-between items-center">
+                <span class="text-zinc-400 uppercase tracking-wider font-semibold text-[10px]">P95 LATENCY</span>
+                <span class="text-brand-primary font-bold">4,200 ms</span>
+              </div>
+              <div class="py-3 flex justify-between items-center">
+                <span class="text-zinc-400 uppercase tracking-wider font-semibold text-[10px]">FAILURES</span>
+                <span class="text-brand-primary font-bold">847 in 10 min</span>
+              </div>
+              <div class="py-3 flex justify-between items-center">
+                <span class="text-zinc-400 uppercase tracking-wider font-semibold text-[10px]">ALERT POLICY</span>
+                <span class="text-zinc-800 font-bold">Payment SLA</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- PagerDuty Buttons -->
+          <div class="mt-8 flex gap-3 text-sm">
+            <button class="flex-grow bg-[#064e3b] text-white font-bold py-3 px-4 rounded-lg text-center hover:bg-[#043e2e] transition-colors cursor-pointer">
+              Acknowledge
+            </button>
+            <button class="flex-grow bg-zinc-100 text-zinc-700 font-bold py-3 px-4 rounded-lg text-center hover:bg-zinc-200 transition-colors cursor-pointer">
+              View Logs
+            </button>
+          </div>
+        </div>
+
       </div>
 
-      <!-- Card 2 -->
-      <div class="rounded-none border border-red-100/80 bg-white p-8 shadow-sm flex flex-col justify-between min-h-[180px]">
-        <h3 class="text-4xl sm:text-5xl font-black text-brand-primary tracking-tight mb-4">45m</h3>
-        <p class="text-zinc-500 text-xs sm:text-sm font-light leading-relaxed">
-          Average time required for a developer to re-enter the deep flow zone after a context switch.
-        </p>
-      </div>
+      <!-- Log Display Card (Right 7 cols) -->
+      <div class="lg:col-span-7 rounded-[20px] border border-brand-primary/40 bg-white overflow-hidden shadow-md flex flex-col justify-between">
+        
+        <!-- Dark Code Header -->
+        <div class="bg-[#1e293b] px-5 py-3.5 flex items-center border-b border-zinc-900 select-none">
+          <span class="text-zinc-400 font-mono text-[11px]">application.log &ndash; payment-service &ndash; 23:04:17</span>
+        </div>
 
-      <!-- Card 3 -->
-      <div class="rounded-none border border-red-200 bg-white p-8 shadow-sm flex flex-col justify-between min-h-[180px] ring-2 ring-brand-primary/10">
-        <h3 class="text-4xl sm:text-5xl font-black text-brand-primary tracking-tight mb-4">10m</h3>
-        <p class="text-zinc-600 text-xs sm:text-sm font-medium leading-relaxed">
-          Total time spent identifying, tracing variables, and deploying a permanent patch using Hyperprobe.
-        </p>
+        <!-- Upper: What Your Logs Show -->
+        <div class="flex-grow">
+          <div class="bg-[#f0fdf4] px-5 py-2.5 border-b border-zinc-150 flex items-center gap-2">
+            <span class="text-[#15803d] font-bold text-xs">&check; WHAT YOUR LOGS SHOW</span>
+          </div>
+          <div class="p-5 font-mono text-[11px] sm:text-xs leading-relaxed text-zinc-600 bg-white space-y-1">
+            <p><span class="text-[#b91c1c]">23:04:17 ERROR payment-service: Transaction failed</span></p>
+            <p class="text-zinc-400 pl-4">user_id=usr_9182 &nbsp; amount=299.99</p>
+            <p class="text-[#b91c1c] font-bold pl-4">NullPointerException at line 32</p>
+            <p class="text-zinc-400 pl-8">PaymentService.processPayment(Order)</p>
+          </div>
+        </div>
+
+        <!-- Lower: What Your Logs Don't Show -->
+        <div class="border-t border-zinc-200">
+          <div class="bg-[#fef2f2] px-5 py-2.5 border-b border-zinc-150 flex items-center gap-2">
+            <span class="text-[#b91c1c] font-bold text-xs">&times; WHAT YOUR LOGS DON'T SHOW &mdash; BUT THE BUG LIVES HERE</span>
+          </div>
+          <div class="p-5 font-mono text-[11px] sm:text-xs text-zinc-700 bg-zinc-50/50 space-y-3">
+            
+            <!-- Table of missing variables -->
+            <div class="space-y-2.5">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-zinc-100 pb-2">
+                <div class="flex gap-2">
+                  <span class="text-zinc-800 font-medium min-w-[120px]">balance</span>
+                  <span class="text-[#b91c1c] font-bold">= null</span>
+                </div>
+                <span class="text-zinc-400 italic text-[10px] sm:text-xs">&larr; DB returned null silently</span>
+              </div>
+              
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-zinc-100 pb-2">
+                <div class="flex gap-2">
+                  <span class="text-zinc-800 font-medium min-w-[120px]">db.timeout</span>
+                  <span class="text-[#d97706] font-bold">= 3000ms</span>
+                </div>
+                <span class="text-zinc-400 italic text-[10px] sm:text-xs">&larr; connection timed out</span>
+              </div>
+              
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-zinc-100 pb-2">
+                <div class="flex gap-2">
+                  <span class="text-zinc-800 font-medium min-w-[120px]">db.pool.active</span>
+                  <span class="text-[#d97706] font-bold">= 5 / 5 in use</span>
+                </div>
+                <span class="text-zinc-400 italic text-[10px] sm:text-xs">&larr; pool exhausted</span>
+              </div>
+              
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-zinc-100 pb-2">
+                <div class="flex gap-2">
+                  <span class="text-zinc-800 font-medium min-w-[120px]">db.pool.waiting</span>
+                  <span class="text-[#d97706] font-bold">= 12 queued</span>
+                </div>
+                <span class="text-zinc-400 italic text-[10px] sm:text-xs">&larr; 12 requests stuck</span>
+              </div>
+              
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                <div class="flex gap-2">
+                  <span class="text-zinc-800 font-medium min-w-[120px]">user.tier</span>
+                  <span class="text-[#2563eb] font-bold">= 'free'</span>
+                </div>
+                <span class="text-zinc-400 italic text-[10px] sm:text-xs">&larr; only free-tier affected</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
       </div>
 
     </div>
