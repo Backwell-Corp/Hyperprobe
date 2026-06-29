@@ -17,8 +17,8 @@
       </p>
     </div>
 
-    <!-- Comparative Table Section (Exact screenshot replica) -->
-    <div class="max-w-5xl mx-auto rounded-[20px] border border-zinc-200 bg-white shadow-md overflow-hidden">
+    <!-- Desktop/Tablet Table View (Hidden on mobile) -->
+    <div class="hidden sm:block max-w-5xl mx-auto rounded-[20px] border border-zinc-200 bg-white shadow-md overflow-hidden">
       <div class="overflow-x-auto">
         <table class="w-full font-sans text-xs sm:text-sm border-collapse min-w-[850px]">
           <thead>
@@ -117,6 +117,109 @@
           </tbody>
         </table>
       </div>
+    </div>
+
+    <!-- Mobile Comparison Cards View (Hidden on tablet/desktop) -->
+    <div class="block sm:hidden space-y-4 max-w-xl mx-auto">
+      
+      <!-- Card 1 -->
+      <div class="rounded-xl border border-zinc-200 bg-white shadow-xs p-5 space-y-3.5">
+        <h3 class="text-xs uppercase tracking-wider font-bold text-zinc-400 font-sans">Where did it break?</h3>
+        <div class="grid grid-cols-2 gap-3 text-xs">
+          <div class="bg-zinc-50 border border-zinc-200 rounded-lg p-3 text-center">
+            <span class="block text-[10px] font-bold text-zinc-500 uppercase tracking-tight mb-1 font-sans">LOGS + APM</span>
+            <span class="text-red-600 font-bold text-sm font-sans">5 min</span>
+          </div>
+          <div class="bg-emerald-50/30 border border-emerald-100 rounded-lg p-3 text-center">
+            <span class="block text-[10px] font-bold text-emerald-800 uppercase tracking-tight mb-1 font-sans">With HyperProbe</span>
+            <span class="text-emerald-850 font-bold text-sm font-sans">5 min</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="rounded-xl border border-zinc-200 bg-white shadow-xs p-5 space-y-3.5">
+        <h3 class="text-xs uppercase tracking-wider font-bold text-zinc-400 font-sans">Which users are affected?</h3>
+        <div class="space-y-2 text-xs">
+          <div class="bg-zinc-50 border border-zinc-200 rounded-lg p-3">
+            <span class="block text-[10px] font-bold text-zinc-500 uppercase tracking-tight mb-1 font-sans">LOGS + APM</span>
+            <span class="text-red-650 font-semibold block leading-snug font-sans">25 min</span>
+            <span class="text-zinc-500 text-[10px] block mt-0.5 leading-snug font-sans">tier not in logs, needs separate DB query</span>
+          </div>
+          <div class="bg-emerald-50/30 border border-emerald-100 rounded-lg p-3">
+            <span class="block text-[10px] font-bold text-emerald-800 uppercase tracking-tight mb-1 font-sans">With HyperProbe</span>
+            <span class="text-emerald-850 font-semibold block leading-snug font-sans">Instant</span>
+            <span class="text-emerald-700/80 text-[10px] block mt-0.5 leading-snug font-sans">user.tier = 'free', 89% of failures</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="rounded-xl border border-zinc-200 bg-white shadow-xs p-5 space-y-3.5">
+        <h3 class="text-xs uppercase tracking-wider font-bold text-zinc-400 font-sans">What did the database return?</h3>
+        <div class="space-y-2 text-xs">
+          <div class="bg-zinc-50 border border-zinc-200 rounded-lg p-3">
+            <span class="block text-[10px] font-bold text-zinc-500 uppercase tracking-tight mb-1 font-sans">LOGS + APM</span>
+            <span class="text-red-650 font-semibold block leading-snug font-sans">60 min</span>
+            <span class="text-zinc-500 text-[10px] block mt-0.5 leading-snug font-sans">redeploy needed, not logged</span>
+          </div>
+          <div class="bg-emerald-50/30 border border-emerald-100 rounded-lg p-3">
+            <span class="block text-[10px] font-bold text-emerald-800 uppercase tracking-tight mb-1 font-sans">With HyperProbe</span>
+            <span class="text-emerald-850 font-semibold block leading-snug font-sans">Instant</span>
+            <span class="text-emerald-700/80 text-[10px] block mt-0.5 leading-snug font-sans">balance = null, timed out after 3000ms</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="rounded-xl border border-zinc-200 bg-white shadow-xs p-5 space-y-3.5">
+        <h3 class="text-xs uppercase tracking-wider font-bold text-zinc-400 font-sans">Why did the database fail?</h3>
+        <div class="space-y-2 text-xs">
+          <div class="bg-zinc-50 border border-zinc-200 rounded-lg p-3">
+            <span class="block text-[10px] font-bold text-zinc-500 uppercase tracking-tight mb-1 font-sans">LOGS + APM</span>
+            <span class="text-red-650 font-semibold block leading-snug font-sans">60 min</span>
+            <span class="text-zinc-500 text-[10px] block mt-0.5 leading-snug font-sans">pool state invisible to logs</span>
+          </div>
+          <div class="bg-emerald-50/30 border border-emerald-100 rounded-lg p-3">
+            <span class="block text-[10px] font-bold text-emerald-800 uppercase tracking-tight mb-1 font-sans">With HyperProbe</span>
+            <span class="text-emerald-850 font-semibold block leading-snug font-sans">Instant</span>
+            <span class="text-emerald-700/80 text-[10px] block mt-0.5 leading-snug font-sans">pool 5/5 full, 12 requests queued</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="rounded-xl border border-zinc-200 bg-white shadow-xs p-5 space-y-3.5">
+        <h3 class="text-xs uppercase tracking-wider font-bold text-zinc-400 font-sans">What damage to users?</h3>
+        <div class="space-y-2 text-xs">
+          <div class="bg-zinc-50 border border-zinc-200 rounded-lg p-3">
+            <span class="block text-[10px] font-bold text-zinc-500 uppercase tracking-tight mb-1 font-sans">LOGS + APM</span>
+            <span class="text-red-650 font-semibold block leading-snug font-sans">90 min</span>
+            <span class="text-zinc-500 text-[10px] block mt-0.5 leading-snug font-sans">silent null&rarr;zero only visible after multiple deploys</span>
+          </div>
+          <div class="bg-emerald-50/30 border border-emerald-100 rounded-lg p-3">
+            <span class="block text-[10px] font-bold text-emerald-800 uppercase tracking-tight mb-1 font-sans">With HyperProbe</span>
+            <span class="text-emerald-850 font-semibold block leading-snug font-sans">Instant</span>
+            <span class="text-emerald-700/80 text-[10px] block mt-0.5 leading-snug font-sans">null treated as zero, user saw wrong error</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Total Time Highlight Card -->
+      <div class="rounded-xl border-2 border-brand-primary/20 bg-white shadow-xs p-5 space-y-3.5">
+        <h3 class="text-xs uppercase tracking-wider font-bold text-brand-primary font-sans">Total Incident Time</h3>
+        <div class="grid grid-cols-2 gap-3 text-xs">
+          <div class="bg-red-50/10 border border-red-100 rounded-lg p-3 text-center">
+            <span class="block text-[9px] font-bold text-red-600 uppercase tracking-tight mb-1 font-sans">LOGS + APM</span>
+            <span class="text-red-600 font-bold text-sm font-mono">3-4 hours</span>
+          </div>
+          <div class="bg-emerald-50/40 border border-emerald-200 rounded-lg p-3 text-center">
+            <span class="block text-[9px] font-bold text-emerald-800 uppercase tracking-tight mb-1 font-sans">With HyperProbe</span>
+            <span class="text-emerald-850 font-bold text-sm font-mono">9 minutes</span>
+          </div>
+        </div>
+      </div>
+
     </div>
 
   </div>
