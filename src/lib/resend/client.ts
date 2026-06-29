@@ -43,8 +43,7 @@ export async function sendDemoLeadEmails(
           .container { max-width: 600px; margin: 0 auto; border: 1px solid #e4e4e7; border-radius: 12px; overflow: hidden; background: #ffffff; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
           .accent-bar { height: 4px; background-color: #C0392B; }
           .header { background: #09090b; padding: 24px; color: #ffffff; }
-          .header h1 { margin: 0; font-size: 18px; font-weight: 600; color: #ffffff; font-family: Georgia, serif; }
-          .header span { color: #C0392B; }
+          .header h1 { margin: 0; font-size: 22px; font-weight: 600; color: #ffffff; font-family: 'Playfair Display', Georgia, serif; letter-spacing: -0.3px; }
           .content { padding: 32px 24px; }
           table { width: 100%; border-collapse: collapse; margin-top: 20px; }
           th { text-align: left; padding: 10px 12px; background: #f4f4f5; font-size: 12px; font-weight: 700; border-bottom: 1px solid #e4e4e7; text-transform: uppercase; color: #71717a; }
@@ -56,7 +55,7 @@ export async function sendDemoLeadEmails(
         <div class="container">
           <div class="accent-bar"></div>
           <div class="header">
-            <h1>Hyper<span>probe</span> &middot; Lead Alert</h1>
+            <h1>Hyperprobe <span style="font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 13px; font-weight: 400; color: #a1a1aa; margin-left: 8px; vertical-align: middle;">&middot; Lead Alert</span></h1>
           </div>
           <div class="content">
             <p style="margin-top: 0; font-size: 15px;">A new developer has submitted a demo request application.</p>
@@ -115,8 +114,7 @@ export async function sendDemoLeadEmails(
           .container { max-width: 580px; margin: 30px auto; background: #ffffff; border: 1px solid #e4e4e7; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
           .accent-bar { height: 4px; background-color: #C0392B; }
           .header { background: #09090b; padding: 28px 24px; text-align: center; }
-          .header h1 { margin: 0; font-size: 22px; font-weight: 700; color: #ffffff; font-family: Georgia, serif; letter-spacing: -0.02em; }
-          .header span { color: #C0392B; }
+          .header h1 { margin: 0; font-size: 22px; font-weight: 600; color: #ffffff; font-family: 'Playfair Display', Georgia, serif; letter-spacing: -0.3px; }
           .content { padding: 36px 28px; }
           .content h2 { color: #18181b; font-family: Georgia, serif; font-size: 20px; font-weight: 500; margin-top: 0; margin-bottom: 16px; }
           .content p { font-size: 14px; color: #52525b; margin-bottom: 20px; }
@@ -132,7 +130,7 @@ export async function sendDemoLeadEmails(
         <div class="container">
           <div class="accent-bar"></div>
           <div class="header">
-            <h1>Hyper<span>probe</span></h1>
+            <h1>Hyperprobe</h1>
           </div>
           <div class="content">
             <h2>Thanks for your interest, ${lead.name}!</h2>
